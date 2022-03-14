@@ -4,9 +4,9 @@ import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 const auth = getAuth();
 const provider = new GoogleAuthProvider();
 
-export const login = (uid, displayName, email, photoUrl) => ({
+export const login = (uid, displayName, email, photoURL) => ({
   type: types.authLogin,
-  payload: { uid, displayName, email, photoUrl },
+  payload: { uid, displayName, email, photoURL },
 });
 
 export const logout = () => ({
@@ -19,13 +19,11 @@ export const startGoogleLogin = () => {
       const response = await signInWithPopup(auth, provider);
       const { uid, displayName, email, photoURL } = response.user;
       dispatch(login(uid, displayName, email, photoURL));
-    } catch (err) {
-      throw err;
-    }
+    } catch (err) {}
   };
 };
 
-export const startLogout = () => {
+export const startGoogleLogout = () => {
   return async (dispatch) => {
     await auth.signOut().then(() => {
       dispatch(logout());

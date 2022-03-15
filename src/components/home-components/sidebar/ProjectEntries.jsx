@@ -1,8 +1,10 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import NewProjectEntry from "./NewProjectEntry";
 import ProjectEntry from "./ProjectEntry";
 
 const ProjectEntries = ({ projectListToShow }) => {
+  const { auth } = useSelector((state) => state);
   if (projectListToShow.length == 0) {
     return (
       <div>
@@ -28,10 +30,13 @@ const ProjectEntries = ({ projectListToShow }) => {
   } else {
     return (
       <div className="project-catalog__entries">
-        <NewProjectEntry /> hacer distinción si es uin lider de inv, mostrar el
-        botón
+        {/* {auth.role === "RESEARCH_LEADER" && <NewProjectEntry />} */}
+
+        {/* //---------PRUEBA_______ */}
+        {true && <NewProjectEntry />}
+        {/* //---------PRUEBA_______ */}
         {projectListToShow.map((project) => (
-          <ProjectEntry />
+          <ProjectEntry {...project} />
         ))}
       </div>
     );

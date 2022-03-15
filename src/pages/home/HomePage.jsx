@@ -9,13 +9,8 @@ import Sidebar from "../../components/home-components/sidebar/Sidebar";
 
 const HomePage = () => {
   const dispatch = useDispatch();
-
   const { projects } = useSelector((state) => state);
 
-  const handleLogout = (e) => {
-    e.preventDefault();
-    dispatch(startGoogleLogout());
-  };
   return (
     <div className="project-catalog__main-content">
       <Sidebar />

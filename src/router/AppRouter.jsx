@@ -8,6 +8,7 @@ import PublicRoute from "./PublicRoute";
 import LoginPage from "../pages/login/LoginPage";
 import DashboardRoutes from "./DashboardRoutes";
 import PrivateRoute from "./PrivateRoute";
+import fakeUserInfo from "../helpers/fakeData/fakeUserData";
 
 const AppRouter = () => {
   const [checkingAuthState, setCheckingAuthState] = useState(true);
@@ -20,7 +21,7 @@ const AppRouter = () => {
     onAuthStateChanged(auth, (user) => {
       if (user?.uid) {
         const { uid, displayName, email, photoURL } = user;
-        console.log(uid + " " + displayName + " " + email + " " + photoURL);
+
         dispatch(login(uid, displayName, email, photoURL));
       } else {
         setIsLoggedIn(false);

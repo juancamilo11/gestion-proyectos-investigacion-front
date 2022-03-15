@@ -2,8 +2,8 @@ import React from "react";
 import NewProjectEntry from "./NewProjectEntry";
 import ProjectEntry from "./ProjectEntry";
 
-const ProjectEntries = ({ projects }) => {
-  if (projects.projectsList.length == 0) {
+const ProjectEntries = ({ projectListToShow }) => {
+  if (projectListToShow.length == 0) {
     return (
       <div>
         <NewProjectEntry />
@@ -30,7 +30,7 @@ const ProjectEntries = ({ projects }) => {
       <div className="project-catalog__entries">
         <NewProjectEntry /> hacer distinción si es uin lider de inv, mostrar el
         botón
-        {projects.projectsList.map((project) => (
+        {projectListToShow.map((project) => (
           <ProjectEntry />
         ))}
       </div>

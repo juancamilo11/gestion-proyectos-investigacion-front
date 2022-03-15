@@ -108,3 +108,5 @@ export const ProjectsReducer = (state = initialState, action) => {
       return state;
   }
 };
+
+export default ProjectsReducer;

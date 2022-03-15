@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { startGoogleLogout } from "../../actions/authActions";
-import { activeSearchPanel } from "../../actions/projectActions";
+import { startGoogleLogout } from "../../../actions/authActions";
+import { activeSearchPanel } from "../../../actions/projectActions";
 import ProjectEntries from "./ProjectEntries";
 
 const Sidebar = () => {
@@ -17,6 +17,10 @@ const Sidebar = () => {
   const handleLogout = (e) => {
     e.preventDefault();
     dispatch(startGoogleLogout());
+  };
+
+  const handleChangeRole = (e) => {
+    e.preventDefault();
   };
 
   return (

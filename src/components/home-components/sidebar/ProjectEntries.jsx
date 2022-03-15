@@ -16,7 +16,9 @@ const ProjectEntries = ({ projects }) => {
             Click en el botón de arriba para crear uno nuevo
           </h5>
           <img
-            src="https://res.cloudinary.com/dahwtwzdl/image/upload/v1644987440/tse_memories/assets/error-404_1_ari8i1.png"
+            src={
+              process.env.PUBLIC_URL + "/assets/img/loader/projects-loading.svg"
+            }
             alt="No results found"
             className="project-catalog__empty-entries-img"
           />

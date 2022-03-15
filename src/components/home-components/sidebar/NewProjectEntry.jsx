@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { activeNewProject } from "../../actions/projectActions";
+import { activeNewProject } from "../../../actions/projectActions";
 
 const NewProjectEntry = () => {
   const dispatch = useDispatch();

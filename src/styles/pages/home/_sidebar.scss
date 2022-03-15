@@ -1,0 +1,124 @@
+.project-catalog__sidebar {
+  color: white;
+  background-color: #333;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding-left: 10px;
+  padding-right: 10px;
+  // min-width: 700px;
+  width: 45%;
+  min-width: 700px;
+  height: 100vh;
+}
+
+.project-catalog__sidebar-navbar {
+  // background-color: yellow;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: -5px;
+}
+
+.project-catalog__sidebar-user-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding-right: 5px;
+  border-radius: 5px;
+}
+
+.project-catalog__sidebar-user-info:hover {
+  background-color: rgb(56, 56, 56);
+  transition: all 0.2s ease-in;
+}
+
+.project-catalog__sidebar-buttons {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  margin-right: 0px;
+}
+
+.project-catalog__img-profile {
+  width: 50px;
+  padding: 10px;
+  margin: -5px;
+  border-radius: 50%;
+}
+
+.project-catalog__logo-profile {
+  font-size: 50px;
+}
+
+.project-catalog__display-name {
+  font-size: 1.2rem;
+  margin-left: 15px;
+  padding-right: 5px;
+}
+
+.project-catalog__search-button {
+  margin-right: 0px;
+  padding: 7px 10px;
+  border-radius: 3px;
+  outline: none;
+  border: 1px solid darkgray;
+  color: #fff;
+  height: 40px;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.project-catalog__search-button:hover {
+  background-color: rgb(0, 17, 255);
+  transition: all 0.2s ease-in;
+}
+
+.project-catalog__logout-button {
+  background-color: red;
+  cursor: pointer;
+  margin-left: 10px;
+  padding: 7px 10px;
+  border-radius: 3px;
+  outline: none;
+  border: 1px solid darkgray;
+  color: #fff;
+  height: 40px;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.project-catalog__logout-button:hover {
+  background-color: rgb(255, 0, 0);
+  transition: all 0.2s ease-in;
+}
+
+.project-catalog__new-project-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0px;
+}
+
+.project-catalog__new-project-button {
+  cursor: pointer;
+  border: 2px solid #000;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+
+.project-catalog__new-project-img {
+  padding-top: 3px;
+  width: 80px;
+  margin-bottom: -20px;
+}
+
+.project-catalog__new-project-text {
+  margin-top: 15px;
+  margin-bottom: 5px;
+}

@@ -31,12 +31,12 @@ export const modifyProject = (projectId, project) => ({
   payload: { projectId, ...project },
 });
 
-export const deleteProject = (projectId, memoriesList) => ({
+export const deleteProject = (projectId, projectsList) => ({
   type: types.deleteProject,
-  payload: { projectId, memoriesList },
+  payload: { projectId, projectsList },
 });
 
-const fetchAllUserMemories = (allUserMemories) => ({
-  type: types.fetchAllUserMemories,
-  payload: allUserMemories,
+const fetchAllUserProjects = (allUserProjects) => ({
+  type: types.fetchAllUserProjects,
+  payload: allUserProjects,
 });

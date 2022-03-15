@@ -1,5 +1,8 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { startGoogleLogout } from "../../actions/authActions";
+import { activeSearchPanel } from "../../actions/projectActions";
+import ProjectEntries from "./ProjectEntries";
 
 const Sidebar = () => {
   const { projects, auth } = useSelector((state) => state);
@@ -13,40 +16,40 @@ const Sidebar = () => {
 
   const handleLogout = (e) => {
     e.preventDefault();
-    dispatch(startLogout());
+    dispatch(startGoogleLogout());
   };
 
   return (
-    <aside className="memory-catalog__sidebar">
-      <div className="memory-catalog__sidebar-navbar">
-        <div className="memory-catalog__sidebar-user-info">
-          {auth?.photoUrl ? (
+    <aside className="project-catalog__sidebar">
+      <div className="project-catalog__sidebar-navbar">
+        <div className="project-catalog__sidebar-user-info">
+          {auth?.photoURL ? (
             <img
-              src={auth.photoUrl}
+              src={auth.photoURL}
               alt="profile pic"
-              className="memory-catalog__img-profile"
+              className="project-catalog__img-profile"
             />
           ) : (
-            <i className="fas fa fa-user-circle memory-catalog__logo-profile"></i>
+            <i className="fas fa fa-user-circle project-catalog__logo-profile"></i>
           )}
-          <span className="memory-catalog__display-name"> {auth.name}</span>
+          <span className="project-catalog__display-name"> {auth.name}</span>
         </div>
-        <div className="memory-catalog__sidebar-buttons">
+        <div className="project-catalog__sidebar-buttons">
           <button
-            className="memory-catalog__search-button"
+            className="project-catalog__search-button"
             onClick={handleOpenSearchPanel}
           >
             Buscar y filtrar
           </button>
           <button
-            className="memory-catalog__logout-button"
+            className="project-catalog__logout-button"
             onClick={handleLogout}
           >
             Salir
           </button>
         </div>
       </div>
-      <MemoryEntries memories={memories} />
+      <ProjectEntries projects={projects} />
     </aside>
   );
 };

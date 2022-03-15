@@ -1,0 +1,119 @@
+.login__main-container {
+  width: 100vw;
+  min-width: 1110px;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  // background-color: red;
+}
+
+.login__sidebar {
+  width: 30%;
+  min-width: 400px;
+  background-color: white;
+  height: 100vh;
+}
+
+.login__welcome-section {
+  user-select: none;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login__welcome-section-img {
+  margin: 20px 0px 10px 0px;
+  width: 150px;
+}
+
+.login__welcome-section-title {
+  padding: 0px 5px;
+  text-align: center;
+  padding: 10px 20px;
+}
+
+.login__login-buttons-section {
+  user-select: none;
+  width: 100%;
+  margin-top: 10px;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login__button-login {
+  overflow: hidden;
+  position: relative;
+  height: 50px;
+  outline: 1px solid black;
+  border: none;
+  border-radius: 3px;
+  width: 80%;
+  margin: 15px 0px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+#login__login-facebook-button {
+  background-color: #456ae5;
+  // border: 1px solid darkgray;
+}
+
+#login__login-microsoft-button {
+  padding: 0px;
+}
+
+.login__button-google {
+  background-color: #db4437;
+}
+
+.login__button-facebook {
+  background-color: #4285f4;
+}
+
+.login__button-microsoft {
+  background-color: #519259;
+}
+
+.login__login-buttons-img {
+  height: 50px;
+  background-color: #fff;
+  border-bottom-left-radius: 3px;
+  border-top-left-radius: 3px;
+  position: absolute;
+  padding: 1px;
+  left: 0;
+}
+
+.login__login-button-text {
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.login__welcome-img-container {
+  width: 70%;
+  height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.login__app-description {
+  user-select: none;
+  position: absolute;
+  color: white;
+  font-size: 1.5rem;
+  top: -10px;
+  left: 40px;
+}
+
+.login__app-description-title {
+  font-weight: bold;
+}

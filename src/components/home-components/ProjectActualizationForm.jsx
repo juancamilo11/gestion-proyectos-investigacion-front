@@ -36,7 +36,9 @@ const ProjectActualizationForm = () => {
 
   const handleAddNewTag = () => {};
 
-  const handleInputValidation = (e) => {};
+  const handleInputValidation = (e) => {
+    handleInputChange(e);
+  };
 
   useEffect(() => {
     if (activeProjectToUpdate) {
@@ -50,10 +52,19 @@ const ProjectActualizationForm = () => {
   return (
     <div className="project-form__main-container">
       <form onSubmit={handleProjectFormSubmit}>
-        <button className="project-form__command-button" type="submit">
-          Guardar
-        </button>
+        <div className="project-form__save-btn-container">
+          <button
+            className="project-form__command-button project-catalog__search-button"
+            type="submit"
+          >
+            Guardar
+          </button>
+        </div>
         <div className="project-form__form-container">
+          <h1 className="project-form__form-title">
+            {name ||
+              "Proyecto de investigación del cambio climático en mamerica latina"}
+          </h1>
           <div className="project-form__inputs-container">
             <div className="project-form__input-container">
               <label htmlFor="name" className="project-form__input-label">
@@ -86,7 +97,7 @@ const ProjectActualizationForm = () => {
               <textarea
                 name="description"
                 id="description"
-                className="project-form__input"
+                className="project-form__input project-form__textarea"
                 autoComplete="off"
                 value={description}
                 onChange={handleInputValidation}

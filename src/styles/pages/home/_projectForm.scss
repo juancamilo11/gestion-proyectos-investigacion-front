@@ -1,26 +1,36 @@
 .project-form__main-container {
   width: 60%;
   min-width: 645px;
-  height: 100vh;
   overflow-y: scroll;
+  height: 100vh;
+}
+
+.project-form__form-title {
+  text-align: center;
+  padding: 5px 15px;
 }
 
 .project-form__command-button {
   cursor: pointer;
   padding: 5px 20px;
   border-radius: 3px;
-  border: 1px solid rgb(9, 2, 112);
-  background-color: #2600ff;
+  border: 1px solid rgb(158, 158, 160);
   color: #fff;
   font-weight: 400;
-  position: absolute;
+  position: relative;
   top: 10px;
-  right: 25px;
+  left: 10px;
+  background-color: transparent;
+}
+
+.project-form__save-btn-container {
+  background-color: #333;
+  height: 65px;
+  border-left: 1px solid rgb(130, 130, 130);
 }
 
 .project-form__inputs-container {
   justify-content: space-evenly;
-  background-color: blue;
   // background-color: blue;
   min-width: 500px;
   margin: 0px auto;
@@ -30,9 +40,10 @@
 .project-form__input-label {
   // border: 1px solid green;
   color: black;
-  font-weight: bold;
+  font-weight: 500;
   font-size: 16px;
   width: 20%;
+  padding-left: 30px;
 }
 
 .project-form__input-container {
@@ -43,7 +54,6 @@
   align-items: center;
   margin-bottom: 5px;
   margin-top: 20px;
-  background-color: red;
 }
 
 .project-form__input {
@@ -59,6 +69,8 @@
 
 .project-form__textarea {
   width: 70% !important;
+  min-height: 50px;
+  max-height: 150px;
 }
 
 .project-form__input-specific-objective {

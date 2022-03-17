@@ -16,7 +16,7 @@ const LoginPage = () => {
       <div className="login__sidebar">
         <div className="login__welcome-section">
           <img
-            src="https://res.cloudinary.com/dahwtwzdl/image/upload/v1647310126/gestion-proyectos-investigacion/logosimbolo-vertical_coeexo.png"
+            src={process.env.PUBLIC_URL + "/assets/img/login/logo-UdeA.png"}
             className="login__welcome-section-img"
             alt="logo"
           />

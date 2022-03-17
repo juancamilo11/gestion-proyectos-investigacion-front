@@ -44,14 +44,16 @@ const ProjectEntry = ({ id, name, budget, objective, duration }) => {
           (activeProjectUpdating?.projectId === id && "#94DAAA"),
       }}
     >
-      <div className="project-catalog__project-entry-body">
+      <div>
         <h2 className="project-catalog__project-entry-title text-center">
           {name}
         </h2>
         <div className="project-catalog__decoration-line">
           <hr />
         </div>
+      </div>
 
+      <div>
         <p className="project-catalog__project-entry-content">
           <i className="fas fa-calendar-alt project-catalog__icon-entry-value"></i>
           <span className="bold-text">
@@ -68,7 +70,8 @@ const ProjectEntry = ({ id, name, budget, objective, duration }) => {
           <i class="fa-solid fa-bullseye-arrow"></i>
           <span className="bold-text">{objective.generalObjective}</span>
         </p>
-        {/* <p className="project-catalog__project-entry-content">
+      </div>
+      {/* <p className="project-catalog__project-entry-content">
           <i className="fas fa-tags project-catalog__icon-entry-value"></i>
           {tagList
             .slice(0, MAX_NUM_TAGS_DISPLAYED)
@@ -76,14 +79,13 @@ const ProjectEntry = ({ id, name, budget, objective, duration }) => {
             .replaceAll(",", ", ")}
           ...
         </p> */}
-        <div className="project-catalog__project-entry-buttons">
-          <button
-            className="project-catalog__visit-project-button mt-1"
-            onClick={handleWatchProject}
-          >
-            Ver Recuerdo
-          </button>
-        </div>
+      <div className="project-catalog__project-entry-buttons">
+        <button
+          className="project-catalog__visit-project-button mt-1"
+          onClick={handleWatchProject}
+        >
+          Ver Proyecto
+        </button>
       </div>
     </div>
   );

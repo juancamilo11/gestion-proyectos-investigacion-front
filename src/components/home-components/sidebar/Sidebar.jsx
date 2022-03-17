@@ -257,6 +257,7 @@ const Sidebar = () => {
           </button>
         </div>
       </div>
+      {/* {JSON.stringify(projects.projectsList[0])} */}
       <ProjectEntries projectListToShow={projectListToShow} />
     </aside>
   );

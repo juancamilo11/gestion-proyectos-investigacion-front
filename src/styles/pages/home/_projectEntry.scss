@@ -15,10 +15,12 @@
 }
 
 .project-catalog__project-entry {
-  background-color: white;
+  background-color: rgb(245, 244, 244);
   border-radius: 4px;
   color: darkgray;
   display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   margin-bottom: 10px;
   margin-right: 10px;
   height: 300px;
@@ -38,7 +40,7 @@
   padding-top: 7px;
   display: flex;
   flex-direction: column;
-  width: 50%;
+  background-color: blue;
   padding-right: 0px;
   overflow-wrap: break-word;
 }
@@ -385,6 +387,13 @@
 
 .project-catalog__visit-project-button {
   margin-bottom: 5px;
+  background-color: #4285f4;
+  color: white;
+  outline: none;
+  border: 1px solid darkgray;
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 25px;
 }
 
 .project-catalog__project-entry-details-container {

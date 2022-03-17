@@ -36,7 +36,21 @@ const ProjectActualizationForm = () => {
     e.preventDefault();
   };
 
-  const handleAddNewTag = () => {};
+  const handleAddNewSpecificObjective = (e) => {
+    e.preventDefault();
+    const newObjective = document
+      .getElementById("currentSpecificObjective")
+      .value.trim();
+    const cleanEvent = {
+      target: { name: "currentSpecificObjective", value: "" },
+    };
+    if (newObjective === "" || newObjective.length > 300) return;
+    setSpecificObjectives([
+      { name: newObjective, completed: false },
+      ...specificObjectives,
+    ]);
+    handleInputChange(cleanEvent);
+  };
 
   const handleInputValidation = (e) => {
     handleInputChange(e);
@@ -71,8 +85,7 @@ const ProjectActualizationForm = () => {
         </div>
         <div className="project-form__form-container">
           <h1 className="project-form__form-title">
-            {name ||
-              "Proyecto de investigación del cambio climático en mamerica latina"}
+            {name || "Nombre del Proyecto de investigación"}
           </h1>
           <div className="project-form__inputs-container">
             <div className="project-form__input-container">
@@ -227,21 +240,17 @@ const ProjectActualizationForm = () => {
                 onChange={handleInputValidation}
               />
               <button
-                onClick={handleAddNewTag}
+                onClick={handleAddNewSpecificObjective}
                 className="project-form__input project-form__button-input btn btn-primary"
                 type="button"
-                disabled={
-                  currentSpecificObjectiveList.length >= 25 ||
-                  errorsState.currentSpecificObjective.hasErrors
-                }
               >
                 Ingresar
               </button>
             </div>
 
             <ProjectSpecificObjectiveList
-              specificObjectiveList={specificObjectiveList}
-              setSpecificObjectiveList={setSpecificObjectiveList}
+              specificObjectives={specificObjectives}
+              setSpecificObjectives={setSpecificObjectives}
             />
           </div>
         </div>

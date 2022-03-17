@@ -1,10 +1,20 @@
 import React from "react";
+import ProjectSpecificObjectiveItem from "./ProjectSpecificObjectiveItem";
 
 const ProjectSpecificObjectiveList = ({
   specificObjectives,
-  setSpecificObjectiveList,
+  setSpecificObjectives,
 }) => {
-  return <div>{JSON.stringify(specificObjectiveList)}</div>;
+  return (
+    <div className="project-form__specific-objectives-container">
+      {specificObjectives.map((objective) => (
+        <ProjectSpecificObjectiveItem
+          {...objective}
+          setSpecificObjectives={setSpecificObjectives}
+        />
+      ))}
+    </div>
+  );
 };
 
 export default ProjectSpecificObjectiveList;

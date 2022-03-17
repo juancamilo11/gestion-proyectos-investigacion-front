@@ -1,10 +1,10 @@
 import React from "react";
 
 const ProjectSpecificObjectiveList = ({
-  currentSpecificObjectiveList,
-  setCurrentSpecificObjectiveList,
+  specificObjectives,
+  setSpecificObjectiveList,
 }) => {
-  return <div>{JSON.stringify(currentSpecificObjectiveList)}</div>;
+  return <div>{JSON.stringify(specificObjectiveList)}</div>;
 };
 
 export default ProjectSpecificObjectiveList;

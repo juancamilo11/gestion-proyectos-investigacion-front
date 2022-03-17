@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { startFetchAllResearchersByProjectId } from "../../actions/projectActions";
 import {
   formInitialErrorState,
   formInitialValues,
@@ -17,10 +18,11 @@ const ProjectActualizationForm = () => {
   const [formValues, handleInputChange, resetForm] = useForm({});
   const [errorsState, setErrorsState] = useState(formInitialErrorState);
   const { activeProjectToUpdate } = useSelector((state) => state.projects);
-  const [currentSpecificObjectiveList, setCurrentSpecificObjectiveList] =
-    useState([]);
+  const [specificObjectives, setSpecificObjectives] = useState([]);
+  const [researcherList, setResearcherList] = useState([]);
 
   const {
+    id,
     description,
     name,
     budget,
@@ -43,9 +45,16 @@ const ProjectActualizationForm = () => {
   useEffect(() => {
     if (activeProjectToUpdate) {
       resetForm(getInitialFormValuesForUpdating(activeProjectToUpdate));
-      setCurrentSpecificObjectiveList(activeProjectToUpdate.tagList || []);
+      setSpecificObjectives(
+        activeProjectToUpdate.objective.specificObjectives || []
+      );
+      //Fetch todos los investigadores de un proyecto de investigación
+      startFetchAllResearchersByProjectId(id).then((researcherList) => {
+        setResearcherList(researcherList);
+      });
     } else {
       resetForm(formInitialValues);
+      setSpecificObjectives([]);
     }
   }, [activeProjectToUpdate]);
 
@@ -231,8 +240,8 @@ const ProjectActualizationForm = () => {
             </div>
 
             <ProjectSpecificObjectiveList
-              currentSpecificObjectiveList={currentSpecificObjectiveList}
-              setCurrentSpecificObjectiveList={setCurrentSpecificObjectiveList}
+              specificObjectiveList={specificObjectiveList}
+              setSpecificObjectiveList={setSpecificObjectiveList}
             />
           </div>
         </div>

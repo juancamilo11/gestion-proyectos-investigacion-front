@@ -337,6 +337,7 @@
   align-items: center;
   border: 1px solid darkgray;
   border-radius: 5px;
+  margin-right: 5px;
 }
 
 .project-form__label-completed {
@@ -355,6 +356,16 @@
   cursor: pointer;
   background-color: rgb(240, 43, 43);
   color: white;
-  border: 1px solid darkgray;
+  border: 1px solid lightgray;
   border-radius: 3px;
+}
+
+.project-form__no-objetives-indicator {
+  text-align: center;
+  font-weight: lighter;
+}
+
+.project-form__specific-objectives-title {
+  text-align: center;
+  margin-bottom: -10px;
 }

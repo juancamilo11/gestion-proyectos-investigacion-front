@@ -15,7 +15,9 @@ const ProjectSpecificObjectiveItem = ({
   return (
     <div>
       <div className="project-form__objective-item">
-        <p>- {name}</p>
+        <p>
+          <b>-</b> {name}
+        </p>
 
         <div>
           {completed ? (

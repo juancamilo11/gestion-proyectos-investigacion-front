@@ -330,6 +330,7 @@
 }
 
 .project-form__objective-item {
+  position: relative;
   padding: 10px;
   margin-top: 5px;
   display: flex;
@@ -381,4 +382,22 @@
   flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
+}
+
+.project-form__researcher-role {
+  position: absolute;
+  top: -15px;
+  right: 10px;
+}
+
+.project-form__researcher-photo {
+  width: 80px;
+  height: 80px;
+  border: 1px solid red;
+  border-radius: 50%;
+}
+
+.project-form__researcher-list-container {
+  width: 94%;
+  margin: 0px 3%;
 }

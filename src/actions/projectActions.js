@@ -53,3 +53,16 @@ export const startFetchAllResearchersByProjectId = async (projectId) => {
     sweetAlertForRequestResponseError();
   }
 };
+
+const fetchResearchInfoByEmail = async(newEmail) => {
+  try {
+    continuar aquí
+    const response = await fetch(`${urlBase}/get/user/project/${projectId}`);
+    if (response.ok) {
+      return await response.json();
+    }
+    throw await response.json();
+  } catch (error) {
+    sweetAlertForRequestResponseError();
+  }
+}

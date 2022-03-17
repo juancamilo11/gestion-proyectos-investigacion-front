@@ -8,7 +8,9 @@ import {
 } from "../../helpers/projectFormHelpers";
 import useForm from "../../hooks/useForm";
 import ErrorFlag from "../ui/ErrorFlag";
-import ProjectResearcherList from "./ProjectResearcherList";
+import ProjectResearcherList, {
+  fakeResearcherList,
+} from "./ProjectResearcherList";
 import ProjectSpecificObjectiveList from "./ProjectSpecificObjectiveList";
 
 const ProjectActualizationForm = () => {
@@ -20,7 +22,7 @@ const ProjectActualizationForm = () => {
   const [errorsState, setErrorsState] = useState(formInitialErrorState);
   const { activeProjectToUpdate } = useSelector((state) => state.projects);
   const [specificObjectives, setSpecificObjectives] = useState([]);
-  const [researcherList, setResearcherList] = useState([]);
+  const [researcherList, setResearcherList] = useState(fakeResearcherList);
 
   const {
     id,
@@ -51,6 +53,22 @@ const ProjectActualizationForm = () => {
       ...specificObjectives,
     ]);
     handleInputChange(cleanEvent);
+  };
+
+  const handleAddNewResearcherByEmail = (e) => {
+    e.preventDefault();
+    const newEmail = document.getElementById("currentEmail").value.trim();
+    const cleanEvent = {
+      target: { name: "v", value: "" },
+    };
+    if (newEmail === "") return;
+    fetchResearchInfoByEmail(newEmail).then((newResearcherInfo) => {
+      setResearcherList((researcherList) => [
+        newResearcherInfo,
+        ...researcherList,
+      ]);
+      handleInputChange(cleanEvent);
+    });
   };
 
   const handleInputValidation = (e) => {
@@ -253,6 +271,31 @@ const ProjectActualizationForm = () => {
               specificObjectives={specificObjectives}
               setSpecificObjectives={setSpecificObjectives}
             />
+
+            <div className="project-form__input-container">
+              <label
+                htmlFor="currentEmail"
+                className="project-form__input-label"
+              >
+                Objetivo específico
+              </label>
+              <input
+                type="text"
+                name="currentEmail"
+                id="currentEmail"
+                className="project-form__input project-form__input-specific-objective"
+                autoComplete="off"
+                value={currentEmail}
+                onChange={handleInputValidation}
+              />
+              <button
+                onClick={handleAddNewResearcherByEmail}
+                className="project-form__input project-form__button-input btn btn-primary"
+                type="button"
+              >
+                Ingresar
+              </button>
+            </div>
 
             <ProjectResearcherList
               researcherList={researcherList}

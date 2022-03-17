@@ -13,6 +13,8 @@
 
 ---
 
+Mockups: https://app.diagrams.net/#G1teNSsuDZWRYpCOGZatkuUJ2KA3OC8wR1
+
 ## API para las peticiones
 
 1. Petición para obtener la información completa de un investigador / Líder investigador

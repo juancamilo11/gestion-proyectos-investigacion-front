@@ -8,6 +8,7 @@ import {
 } from "../../helpers/projectFormHelpers";
 import useForm from "../../hooks/useForm";
 import ErrorFlag from "../ui/ErrorFlag";
+import ProjectResearcherList from "./ProjectResearcherList";
 import ProjectSpecificObjectiveList from "./ProjectSpecificObjectiveList";
 
 const ProjectActualizationForm = () => {
@@ -251,6 +252,11 @@ const ProjectActualizationForm = () => {
             <ProjectSpecificObjectiveList
               specificObjectives={specificObjectives}
               setSpecificObjectives={setSpecificObjectives}
+            />
+
+            <ProjectResearcherList
+              researcherList={researcherList}
+              setResearcherList={setResearcherList}
             />
           </div>
         </div>

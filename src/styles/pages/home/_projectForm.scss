@@ -341,6 +341,7 @@
 }
 
 .project-form__label-completed {
+  text-align: center;
   color: green;
   font-weight: bold;
 }
@@ -368,4 +369,16 @@
 .project-form__specific-objectives-title {
   text-align: center;
   margin-bottom: -10px;
+}
+
+.project-form__radio-completed {
+  margin: auto 5px;
+}
+
+.project-form-specific-objective-info {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
 }

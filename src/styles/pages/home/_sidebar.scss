@@ -129,6 +129,13 @@
   margin-top: 30px;
 }
 
+.project-catalog__entries {
+  margin-top: 10px;
+  flex: 1 1 auto;
+  overflow-y: scroll;
+  border-radius: 5px;
+}
+
 .project-catalog__empty-entries-container {
   padding: 15px 15px 0px 15px;
   height: 380px;

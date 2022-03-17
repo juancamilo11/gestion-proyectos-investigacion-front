@@ -19,3 +19,15 @@ export const sweetAlertForSearchAndFilterProjectsBuilder = (dispatch) =>
       } catch (error) {}
     },
   });
+
+export const sweetAlertForRequestResponseError = () =>
+  Swal.fire({
+    icon: "error",
+    title:
+      "Error en la petición para obtener todos los investigadores de este proyecto",
+
+    showCancelButton: false,
+    showConfirmButton: false,
+    allowEscapeKey: true,
+    allowOutsideClick: true,
+  });

@@ -9,6 +9,7 @@ const NewProjectEntry = () => {
     e.preventDefault();
     dispatch(activeNewProject());
   };
+
   return (
     <div
       className="project-catalog__new-project-container"

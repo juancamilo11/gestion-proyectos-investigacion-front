@@ -112,17 +112,17 @@ const ProjectActualizationForm = () => {
                 type="date"
                 name="startingDate"
                 id="startingDate"
-                className="project-form__input"
+                className="project-form__input project-form__input--middle"
                 autoComplete="off"
                 value={duration?.startingDate}
                 onChange={handleInputValidation}
               />
-              -
+              <div className="project-form__input-separator"> - </div>
               <input
                 type="date"
                 name="endingDate"
                 id="endingDate"
-                className="project-form__input"
+                className="project-form__input project-form__input--middle"
                 autoComplete="off"
                 value={duration?.endingDate}
                 onChange={handleInputValidation}
@@ -175,7 +175,7 @@ const ProjectActualizationForm = () => {
               <textarea
                 name="generalObjective"
                 id="generalObjective"
-                className="project-form__input"
+                className="project-form__input project-form__textarea"
                 autoComplete="off"
                 value={objective?.generalObjective}
                 onChange={handleInputValidation}
@@ -195,20 +195,20 @@ const ProjectActualizationForm = () => {
                 htmlFor="currentSpecificObjective"
                 className="project-form__input-label"
               >
-                Palabras clave
+                Objetivo específico
               </label>
               <input
                 type="text"
                 name="currentSpecificObjective"
                 id="currentSpecificObjective"
-                className="project-form__input project-form__input-currentSpecificObjective"
+                className="project-form__input project-form__input-specific-objective"
                 autoComplete="off"
                 value={currentSpecificObjective}
                 onChange={handleInputValidation}
               />
               <button
                 onClick={handleAddNewTag}
-                className="project-form__input project-form__button-input-currentSpecificObjective btn btn-primary"
+                className="project-form__input project-form__button-input btn btn-primary"
                 type="button"
                 disabled={
                   currentSpecificObjectiveList.length >= 25 ||

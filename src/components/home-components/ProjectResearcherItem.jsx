@@ -10,9 +10,13 @@ const ProjectResearcherItem = ({
   dateOfEntry,
   role,
   career,
+  setResearcherList,
 }) => {
   const handleDeleteResearcher = (e) => {
     e.preventDefault();
+    setResearcherList((researcherList) =>
+      researcherList.filter((researcher) => researcher.id !== id)
+    );
   };
   return (
     <div>

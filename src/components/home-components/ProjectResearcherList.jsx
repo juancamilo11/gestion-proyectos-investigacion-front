@@ -2,7 +2,7 @@ import React from "react";
 import ErrorFlag from "../ui/ErrorFlag";
 import ProjectResearcherItem from "./ProjectResearcherItem";
 
-const fakeResearcherList = [
+export const fakeResearcherList = [
   {
     id: "97M7VMD-M8C5MX34-5M3475",
     displayName: "Pedrito Perez Arango",
@@ -80,7 +80,7 @@ const ProjectResearcherList = ({ researcherList, setResearcherList }) => {
           )}
         </h3>
       </div>
-      {fakeResearcherList.map((researcher) => (
+      {researcherList.map((researcher) => (
         <ProjectResearcherItem
           {...researcher}
           setResearcherList={setResearcherList}

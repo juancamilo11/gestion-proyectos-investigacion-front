@@ -4,7 +4,10 @@ import app from "./../firebase/firebaseConfig";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import fakeUserInfo from "../helpers/fakeData/fakeUserData";
 import { validateEmail } from "../helpers/login/emailDomainValidator";
-import { sweetAlertForRequestResponseError } from "../helpers/sweet-alert/sweetAlertBuilder";
+import {
+  sweetAlertForInvalidUserEmail,
+  sweetAlertForRequestResponseError,
+} from "../helpers/sweet-alert/sweetAlertBuilder";
 const auth = getAuth();
 const provider = new GoogleAuthProvider();
 
@@ -41,6 +44,7 @@ export const startGoogleLogin = () => {
       const response = await signInWithPopup(auth, provider);
       const { uid: id, displayName, email, photoURL } = response.user;
       if (!validateEmail(email)) {
+        sweetAlertForInvalidUserEmail(email);
         startGoogleLogout();
       } else {
         startFetchUserInfo({ id, displayName, email, photoURL }).then(

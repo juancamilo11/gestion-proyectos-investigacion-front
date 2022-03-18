@@ -32,6 +32,17 @@ export const sweetAlertForRequestResponseError = () =>
     allowOutsideClick: true,
   });
 
+export const sweetAlertForInvalidUserEmail = (email) =>
+  Swal.fire({
+    icon: "error",
+    title:
+      "El correo electrónico no corresponde al dominio de la Universidad de Antioquia",
+    showCancelButton: false,
+    showConfirmButton: false,
+    allowEscapeKey: true,
+    allowOutsideClick: true,
+  });
+
 export const sweetAlertForDeleteAResearchFromAProject = async (
   displayName,
   photoURL

@@ -1,5 +1,6 @@
 import React from "react";
 import { createRoutesFromChildren } from "react-router-dom";
+import { sweetAlertForDeleteAResearchFromAProject } from "../../helpers/sweet-alert/sweetAlertBuilder";
 
 const ProjectResearcherItem = ({
   id,
@@ -14,10 +15,17 @@ const ProjectResearcherItem = ({
 }) => {
   const handleDeleteResearcher = (e) => {
     e.preventDefault();
-    setResearcherList((researcherList) =>
-      researcherList.filter((researcher) => researcher.id !== id)
+    sweetAlertForDeleteAResearchFromAProject(displayName, photoURL).then(
+      (res) => {
+        if (res.isConfirmed) {
+          setResearcherList((researcherList) =>
+            researcherList.filter((researcher) => researcher.id !== id)
+          );
+        }
+      }
     );
   };
+
   return (
     <div>
       <div className="project-form__objective-item">

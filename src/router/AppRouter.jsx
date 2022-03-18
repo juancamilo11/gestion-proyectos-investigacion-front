@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getAuth, onAuthStateChanged } from "@firebase/auth";
-import { login } from "../actions/authActions";
+import { login, startFetchUserInfo } from "../actions/authActions";
 import Loader from "../components/ui/Loader";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import PublicRoute from "./PublicRoute";
@@ -20,9 +20,25 @@ const AppRouter = () => {
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user?.uid) {
-        const { uid, displayName, email, photoURL } = user;
-
-        dispatch(login(uid, displayName, email, photoURL));
+        const { uid: id, displayName, email, photoURL } = user;
+        dispatch(login(id, displayName, email, photoURL));
+        startFetchUserInfo({ id, displayName, email, photoURL }).then(
+          (userInfo) => {
+            dispatch(
+              login(
+                userInfo.id,
+                userInfo.displayName,
+                userInfo.email,
+                userInfo.photoURL,
+                userInfo.phoneNumber,
+                userInfo.dateOfEntry,
+                userInfo.role,
+                userInfo.career,
+                userInfo.researchProjectList
+              )
+            );
+          }
+        );
       } else {
         setIsLoggedIn(false);
       }

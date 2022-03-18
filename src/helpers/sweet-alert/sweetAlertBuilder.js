@@ -20,11 +20,10 @@ export const sweetAlertForSearchAndFilterProjectsBuilder = (dispatch) =>
     },
   });
 
-export const sweetAlertForRequestResponseError = () =>
+export const sweetAlertForRequestResponseError = (message) =>
   Swal.fire({
     icon: "error",
-    title:
-      "Error en la petición para obtener todos los investigadores de este proyecto",
+    text: `${message || "Falta definir el mensaje"}`,
 
     showCancelButton: false,
     showConfirmButton: false,
@@ -35,8 +34,7 @@ export const sweetAlertForRequestResponseError = () =>
 export const sweetAlertForInvalidUserEmail = (email) =>
   Swal.fire({
     icon: "error",
-    title:
-      "El correo electrónico no corresponde al dominio de la Universidad de Antioquia",
+    text: "El correo electrónico no corresponde al dominio de la Universidad de Antioquia",
     showCancelButton: false,
     showConfirmButton: false,
     allowEscapeKey: true,

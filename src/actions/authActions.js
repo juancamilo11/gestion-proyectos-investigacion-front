@@ -19,7 +19,8 @@ export const login = (
   phoneNumber,
   dateOfEntry,
   role,
-  career
+  career,
+  researchProjectList
 ) => ({
   type: types.authLogin,
   payload: {
@@ -27,10 +28,11 @@ export const login = (
     displayName,
     email,
     photoURL,
-    phoneNumber,
-    dateOfEntry,
-    role,
-    career,
+    phoneNumber: phoneNumber || "",
+    dateOfEntry: dateOfEntry || "",
+    role: role || "RESEARCHER",
+    career: career || { name: "", code: "" },
+    researchProjectList: researchProjectList || [],
   },
 });
 
@@ -43,18 +45,33 @@ export const startGoogleLogin = () => {
     try {
       const response = await signInWithPopup(auth, provider);
       const { uid: id, displayName, email, photoURL } = response.user;
+      dispatch(login(id, displayName, email, photoURL));
       if (!validateEmail(email)) {
+        dispatch(startGoogleLogout());
         sweetAlertForInvalidUserEmail(email);
-        startGoogleLogout();
       } else {
         startFetchUserInfo({ id, displayName, email, photoURL }).then(
           (userInfo) => {
-            dispatch(login({ ...userInfo }));
+            dispatch(
+              login(
+                userInfo.id,
+                userInfo.displayName,
+                userInfo.email,
+                userInfo.photoURL,
+                userInfo.phoneNumber,
+                userInfo.dateOfEntry,
+                userInfo.role,
+                userInfo.career,
+                userInfo.researchProjectList
+              )
+            );
           }
         );
       }
-    } catch (err) {
-      sweetAlertForRequestResponseError();
+    } catch (error) {
+      sweetAlertForRequestResponseError(
+        "Se ha presentado el siguiente error: " + JSON.stringify(error)
+      );
     }
   };
 };
@@ -73,7 +90,9 @@ export const startFetchUserInfo = async (userInfo) => {
     }
     throw await herokuResponse.json();
   } catch (error) {
-    sweetAlertForRequestResponseError();
+    sweetAlertForRequestResponseError(
+      "Se ha presentado el siguiente error: " + JSON.stringify(error)
+    );
   }
 };
 

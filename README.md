@@ -482,7 +482,7 @@ Body: Vacío
 
 Recomendación: Hacer validación de la existencia del usuario en el sistema, si no existe no agregarlo
 
-Response: ResponseEntity<String> --> 200 --> Success, 404 --> Error
+Response: ResponseEntity<ResearcherDto> --> La información del usuario ingresado, en caso de no encontrarlo en la base de datos, se debe de lanzar una excepción de tipo IllegalArgumentException
 
 6. Obtener todos los proyectos
 

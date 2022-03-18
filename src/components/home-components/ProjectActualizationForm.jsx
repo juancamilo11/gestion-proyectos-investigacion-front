@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { startFetchAllResearchersByProjectId } from "../../actions/projectActions";
+import {
+  fetchResearchInfoByEmail,
+  startFetchAllResearchersByProjectId,
+} from "../../actions/projectActions";
 import {
   formInitialErrorState,
   formInitialValues,
@@ -277,12 +280,13 @@ const ProjectActualizationForm = () => {
                 htmlFor="currentEmail"
                 className="project-form__input-label"
               >
-                Objetivo específico
+                Matricular estudiante
               </label>
               <input
                 type="text"
                 name="currentEmail"
                 id="currentEmail"
+                placeholder="Correo del estudiante a matricular"
                 className="project-form__input project-form__input-specific-objective"
                 autoComplete="off"
                 value={currentEmail}

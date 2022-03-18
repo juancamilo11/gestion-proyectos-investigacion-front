@@ -1,11 +1,12 @@
 import React from "react";
+import { v4 as uuidv4 } from "uuid";
 import ErrorFlag from "../ui/ErrorFlag";
 import ProjectResearcherItem from "./ProjectResearcherItem";
 
 export const fakeResearcherList = [
   {
-    id: "97M7VMD-M8C5MX34-5M3475",
-    displayName: "Pedrito Perez Arango",
+    id: uuidv4(),
+    displayName: "Random name" + parseInt(Math.random() * 100),
     email: "pedrito.perez@udea.edu.co",
     photoURL:
       "https://i.pinimg.com/originals/ae/8a/c2/ae8ac2fa217d23aadcc913989fcc34a2.png",
@@ -18,8 +19,8 @@ export const fakeResearcherList = [
     },
   },
   {
-    id: "97M7VMD-M8C5MX34-5M3475",
-    displayName: "Pedrito Perez Arango",
+    id: uuidv4(),
+    displayName: "Random name" + parseInt(Math.random() * 100),
     email: "pedrito.perez@udea.edu.co",
     photoURL:
       "https://i.pinimg.com/originals/ae/8a/c2/ae8ac2fa217d23aadcc913989fcc34a2.png",
@@ -32,8 +33,8 @@ export const fakeResearcherList = [
     },
   },
   {
-    id: "97M7VMD-M8C5MX34-5M3475",
-    displayName: "Pedrito Perez Arango",
+    id: uuidv4(),
+    displayName: "Random name" + parseInt(Math.random() * 100),
     email: "pedrito.perez@udea.edu.co",
     photoURL:
       "https://i.pinimg.com/originals/ae/8a/c2/ae8ac2fa217d23aadcc913989fcc34a2.png",
@@ -46,8 +47,8 @@ export const fakeResearcherList = [
     },
   },
   {
-    id: "97M7VMD-M8C5MX34-5M3475",
-    displayName: "Pedrito Perez Arango",
+    id: uuidv4(),
+    displayName: "Random name" + parseInt(Math.random() * 100),
     email: "pedrito.perez@udea.edu.co",
     photoURL:
       "https://i.pinimg.com/originals/ae/8a/c2/ae8ac2fa217d23aadcc913989fcc34a2.png",

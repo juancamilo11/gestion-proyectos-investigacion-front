@@ -31,3 +31,24 @@ export const sweetAlertForRequestResponseError = () =>
     allowEscapeKey: true,
     allowOutsideClick: true,
   });
+
+export const sweetAlertForDeleteAResearchFromAProject = async (
+  displayName,
+  photoURL
+) =>
+  Swal.fire({
+    icon: "warning",
+    title: "Eliminación de un investigador",
+    html: `¿Realmente desea eliminar el investigador <b>${displayName}</b> del proyecto de investigación?`,
+    footer: `<small><b>Esta acción no se puede deshacer</b></small>`,
+    imageUrl: { photoURL },
+    showConfirmButton: true,
+    showDenyButton: false,
+    showCancelButton: true,
+    timerProgressBar: true,
+    timer: 10000,
+    confirmButtonText: "Eliminar",
+    cancelButtonText: "Cancelar",
+    allowEscapeKey: false,
+    allowOutsideClick: false,
+  });

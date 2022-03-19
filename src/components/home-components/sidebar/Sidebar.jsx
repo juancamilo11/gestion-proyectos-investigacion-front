@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { startGoogleLogout } from "../../../actions/authActions";
 import { activeSearchPanel } from "../../../actions/projectActions";
@@ -167,6 +168,7 @@ const projects = {
 };
 
 const Sidebar = () => {
+  const navigate = useNavigate();
   // const { projects, auth } = useSelector((state) => state);
 
   // const [projectListToShow, setProjectListToShow] = useState(
@@ -217,6 +219,15 @@ const Sidebar = () => {
     setFilterValue("");
   };
 
+  const handleGoTouserAdministrationConsole = (e) => {
+    e.preventDefault();
+    navigate("/user-administration");
+  };
+  const handleGoToProjectAdministrationConsole = (e) => {
+    e.preventDefault();
+    navigate("/project-administration");
+  };
+
   return (
     <aside className="project-catalog__sidebar">
       <div className="project-catalog__sidebar-navbar">
@@ -258,6 +269,12 @@ const Sidebar = () => {
         </div>
       </div>
       {/* {JSON.stringify(projects.projectsList[0])} */}
+      <button onClick={handleGoTouserAdministrationConsole}>
+        ir a admin de usuarios
+      </button>
+      <button onClick={handleGoToProjectAdministrationConsole}>
+        ir a admin de proyectos
+      </button>
       <ProjectEntries projectListToShow={projectListToShow} />
     </aside>
   );

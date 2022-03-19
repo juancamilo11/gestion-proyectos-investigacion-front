@@ -77,23 +77,35 @@ export const startGoogleLogin = () => {
 };
 
 export const startFetchUserInfo = async (userInfo) => {
-  try {
-    const herokuResponse = await fetch(`${urlBase}/post/user`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(userInfo),
-    });
-    if (herokuResponse.ok) {
-      return await herokuResponse.json();
-    }
-    throw await herokuResponse.json();
-  } catch (error) {
-    sweetAlertForRequestResponseError(
-      "Se ha presentado el siguiente error: " + JSON.stringify(error)
-    );
-  }
+  return {
+    id: "12345",
+    displayName: "Juan Camilo",
+    email: "juan@udea.edu.co",
+    photoURL: "http://foto.png",
+    phoneNumber: "2324325",
+    dateOfEntry: "2020-03-10",
+    role: "RESEARCHER",
+    career: { name: "Ing. de Sistemas", code: "503" },
+    researchProjectList: [], //--> Agregar contenido
+  };
+
+  // try {
+  //   const herokuResponse = await fetch(`${urlBase}/post/user`, {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify(userInfo),
+  //   });
+  //   if (herokuResponse.ok) {
+  //     return await herokuResponse.json();
+  //   }
+  //   throw await herokuResponse.json();
+  // } catch (error) {
+  //   sweetAlertForRequestResponseError(
+  //     "Se ha presentado el siguiente error: " + JSON.stringify(error)
+  //   );
+  // }
 };
 
 export const startGoogleLogout = () => {

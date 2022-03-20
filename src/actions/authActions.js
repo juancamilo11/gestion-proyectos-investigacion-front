@@ -84,7 +84,9 @@ export const startFetchUserInfo = async (userInfo) => {
     photoURL: "http://foto.png",
     phoneNumber: "2324325",
     dateOfEntry: "2020-03-10",
-    role: "RESEARCHER",
+    role: "RESEARCH_LEADER",
+    // role: "RESEARCHER",
+    // role: "ADMINISTRATOR",
     career: { name: "Ing. de Sistemas", code: "503" },
     researchProjectList: [], //--> Agregar contenido
   };

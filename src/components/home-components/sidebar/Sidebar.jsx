@@ -197,8 +197,8 @@ const Sidebar = () => {
           });
           return;
         }
-        const newShowedProjects = projects.projectsList.map(
-          (project) => project.name.toLowerCase() === res.value.toLowerCase()
+        const newShowedProjects = projects.projectsList.filter((project) =>
+          project.name.toLowerCase().includes(res.value.toLowerCase())
         );
         setProjectListToShow(newShowedProjects);
         setHasFilters(true);
@@ -217,15 +217,6 @@ const Sidebar = () => {
     setProjectListToShow(projects.projectsList);
     setHasFilters(false);
     setFilterValue("");
-  };
-
-  const handleGoTouserAdministrationConsole = (e) => {
-    e.preventDefault();
-    navigate("/user-administration");
-  };
-  const handleGoToProjectAdministrationConsole = (e) => {
-    e.preventDefault();
-    navigate("/project-administration");
   };
 
   return (
@@ -268,13 +259,6 @@ const Sidebar = () => {
           </button>
         </div>
       </div>
-      {/* {JSON.stringify(projects.projectsList[0])} */}
-      <button onClick={handleGoTouserAdministrationConsole}>
-        ir a admin de usuarios
-      </button>
-      <button onClick={handleGoToProjectAdministrationConsole}>
-        ir a admin de proyectos
-      </button>
       <ProjectEntries projectListToShow={projectListToShow} />
     </aside>
   );

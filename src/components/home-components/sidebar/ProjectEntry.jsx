@@ -57,8 +57,8 @@ const ProjectEntry = ({ id, name, budget, objective, duration }) => {
         <p className="project-catalog__project-entry-content">
           <i className="fas fa-calendar-alt project-catalog__icon-entry-value"></i>
           <span className="bold-text">
-            Habilitado desde el {duration.startingDate} hasta el{" "}
-            {duration.endingDate}
+            Habilitado desde el {duration?.startingDate} hasta el{" "}
+            {duration?.endingDate}
           </span>
         </p>
         <p className="project-catalog__project-entry-content">
@@ -68,7 +68,7 @@ const ProjectEntry = ({ id, name, budget, objective, duration }) => {
         <p className="project-catalog__project-entry-content">
           <i class="fa fa-bullseye project-catalog__icon-entry-value"></i>
           <i class="fa-solid fa-bullseye-arrow"></i>
-          <span className="bold-text">{objective.generalObjective}</span>
+          <span className="bold-text">{objective?.generalObjective}</span>
         </p>
       </div>
       {/* <p className="project-catalog__project-entry-content">
@@ -84,7 +84,9 @@ const ProjectEntry = ({ id, name, budget, objective, duration }) => {
           className="project-catalog__visit-project-button mt-1"
           onClick={handleWatchProject}
         >
-          Ver Proyecto
+          {auth.role === "RESEARCH_LEADER"
+            ? "Administrar proyecto"
+            : "Ver Proyecto"}
         </button>
       </div>
     </div>

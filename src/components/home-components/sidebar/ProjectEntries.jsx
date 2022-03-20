@@ -8,7 +8,7 @@ const ProjectEntries = ({ projectListToShow }) => {
   if (projectListToShow.length == 0) {
     return (
       <div>
-        <NewProjectEntry />
+        {auth.role === "RESEARCH_LEADER" && <NewProjectEntry />}
         <div className="project-catalog__empty-entries-container">
           <h3 className="text-center">
             Estamos buscando los proyectos de investigación en los que estás
@@ -33,7 +33,7 @@ const ProjectEntries = ({ projectListToShow }) => {
         {/* {auth.role === "RESEARCH_LEADER" && <NewProjectEntry />} */}
 
         {/* //---------PRUEBA_______ */}
-        {true && <NewProjectEntry />}
+        {auth.role === "RESEARCH_LEADER" && <NewProjectEntry />}
         {/* //---------PRUEBA_______ */}
         {projectListToShow.map((project) => (
           <ProjectEntry {...project} />

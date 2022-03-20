@@ -11,7 +11,7 @@ const projects = {
   projectsList: [
     {
       id: "3249KM-3C875843-53485C",
-      name: "Investigación de Microbacterias",
+      name: "Investigación de Sistemas de Información",
       budget: 3500000,
       objective: {
         generalObjective:
@@ -19,19 +19,19 @@ const projects = {
         specificObjectives: [
           {
             description: "descripcion objetivo especifico 1",
-            completed: false,
+            completed: true,
           },
           {
             description: "descripcion objetivo especifico 1",
-            completed: false,
+            completed: true,
           },
           {
             description: "descripcion objetivo especifico 1",
-            completed: false,
+            completed: true,
           },
           {
             description: "descripcion objetivo especifico 1",
-            completed: false,
+            completed: true,
           },
         ],
       },
@@ -73,7 +73,7 @@ const projects = {
     },
     {
       id: "023X9378-3C875843-53485C",
-      name: "Investigación de Microbacterias",
+      name: "Investigación de Virus y Bacterias",
       budget: 3500000,
       objective: {
         generalObjective:
@@ -104,7 +104,7 @@ const projects = {
     },
     {
       id: "345G45-3C875843-53485C",
-      name: "Investigación de Microbacterias",
+      name: "Investigación del Sistema solar",
       budget: 3500000,
       objective: {
         generalObjective:
@@ -135,7 +135,7 @@ const projects = {
     },
     {
       id: "345F3-3C875843-53485C",
-      name: "Investigación de Microbacterias",
+      name: "Investigación de las causas del suicidio",
       budget: 3500000,
       objective: {
         generalObjective:
@@ -197,8 +197,8 @@ const Sidebar = () => {
           });
           return;
         }
-        const newShowedProjects = projects.projectsList.map(
-          (project) => project.name.toLowerCase() === res.value.toLowerCase()
+        const newShowedProjects = projects.projectsList.filter((project) =>
+          project.name.toLowerCase().includes(res.value.toLowerCase())
         );
         setProjectListToShow(newShowedProjects);
         setHasFilters(true);
@@ -217,15 +217,6 @@ const Sidebar = () => {
     setProjectListToShow(projects.projectsList);
     setHasFilters(false);
     setFilterValue("");
-  };
-
-  const handleGoTouserAdministrationConsole = (e) => {
-    e.preventDefault();
-    navigate("/user-administration");
-  };
-  const handleGoToProjectAdministrationConsole = (e) => {
-    e.preventDefault();
-    navigate("/project-administration");
   };
 
   return (
@@ -268,13 +259,6 @@ const Sidebar = () => {
           </button>
         </div>
       </div>
-      {/* {JSON.stringify(projects.projectsList[0])} */}
-      <button onClick={handleGoTouserAdministrationConsole}>
-        ir a admin de usuarios
-      </button>
-      <button onClick={handleGoToProjectAdministrationConsole}>
-        ir a admin de proyectos
-      </button>
       <ProjectEntries projectListToShow={projectListToShow} />
     </aside>
   );

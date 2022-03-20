@@ -1,4 +1,5 @@
 import Swal from "sweetalert2";
+import { appRoles } from "../user-info/userRoles";
 
 export const sweetAlertForSearchAndFilterProjectsBuilder = (dispatch) =>
   Swal.fire({
@@ -60,4 +61,100 @@ export const sweetAlertForDeleteAResearchFromAProject = async (
     cancelButtonText: "Cancelar",
     allowEscapeKey: false,
     allowOutsideClick: false,
+  });
+
+export const sweetAlertForDeleteAPersonFromApplication = async (
+  displayName,
+  photoURL
+) =>
+  Swal.fire({
+    icon: "warning",
+    title: "Eliminación de una persona de la aplicación",
+    html: `¿Realmente desea eliminar a <b>${displayName}</b> de la aplicación?`,
+    footer: `<h4><b>Se eliminará de todos los proyectos en los que está matriculado</b></h4>`,
+    imageUrl: { photoURL },
+    showConfirmButton: true,
+    showDenyButton: false,
+    showCancelButton: true,
+    timerProgressBar: true,
+    timer: 10000,
+    confirmButtonText: "Eliminar",
+    cancelButtonText: "Cancelar",
+    allowEscapeKey: false,
+    allowOutsideClick: false,
+  });
+
+export const sweetAlertForChangeRoleToUser = (
+  displayName,
+  photoURL,
+  selectedRole
+) =>
+  Swal.fire({
+    icon: "warning",
+    title: "Cambio de rol a un usuario",
+    html: `¿Realmente desea cambiar el rol de usuario a <b>${displayName}</b> como <b>${
+      appRoles.find((role) => role.value === selectedRole).label
+    }</b> en la aplicación?`,
+    footer: `<h4><b>${
+      selectedRole === "RESEARCHER"
+        ? "Se eliminará de todos los proyectos en los que está matriculado como investigador"
+        : "Se eliminarán todos los proyectos de investigación que esté liderando en el momento"
+    }</b></h4>`,
+    imageUrl: { photoURL },
+    showConfirmButton: true,
+    showDenyButton: false,
+    showCancelButton: true,
+    timerProgressBar: true,
+    timer: 30000,
+    confirmButtonText: "Confirmar cambio",
+    cancelButtonText: "Cancelar",
+    allowEscapeKey: false,
+    allowOutsideClick: false,
+  });
+
+export const sweetAlertForDeleteAProjectFromApplication = (
+  name,
+  budget,
+  duration
+) =>
+  Swal.fire({
+    icon: "warning",
+    title: "Eliminación de un proyecto de la aplicación",
+    html: `¿Realmente desea eliminar el proyecto <b>${name}</b> de la aplicación, el cual se habilitó para el periodo desde ${duration.startingDate} hasta ${duration.endingDate} y tiene un presupuesto de ${budget}?`,
+    footer: `<h4><b>Esta acción es irreversible.</b></h4>`,
+    showConfirmButton: true,
+    showDenyButton: false,
+    showCancelButton: true,
+    timerProgressBar: true,
+    timer: 10000,
+    confirmButtonText: "Eliminar",
+    cancelButtonText: "Cancelar",
+    allowEscapeKey: false,
+    allowOutsideClick: false,
+  });
+
+export const sweetAlertForDisplayProjectObjectives = (name, objective) =>
+  Swal.fire({
+    icon: `${objective.generalObjective}`,
+    title: "Lista de objetivos específicos del proyecto " + name,
+    text: "hola",
+    html: `<div>
+        ${objective.specificObjectives.map(
+          (specificObjective) =>
+            `
+              ${specificObjective.description}
+              </br>
+              ${
+                specificObjective.completed
+                  ? "&#9989 Completado"
+                  : "&#10060 No completado"
+              } 
+              </br></br>
+            `
+        )}
+      </div>`,
+    showCancelButton: false,
+    showConfirmButton: false,
+    allowEscapeKey: true,
+    allowOutsideClick: true,
   });

@@ -12,6 +12,8 @@ const DashboardRoutes = () => {
     <Routes>
       {role === "ADMINISTRATOR" ? (
         <>
+          <Route exact path="/" element={<ProjectAdministrationConsole />} />
+
           <Route
             exact
             path="/user-administration"
@@ -24,7 +26,7 @@ const DashboardRoutes = () => {
             element={<ProjectAdministrationConsole />}
           />
 
-          <Route exact path="/*" element={<ProjectAdministrationConsole />} />
+          <Route path="/*" element={<Error404Page />} />
         </>
       ) : (
         <Route exact path="/" element={<HomePage />} />

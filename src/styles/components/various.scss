@@ -4,3 +4,21 @@
   border-radius: 5px;
   text-align: center;
 }
+.loader__main-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader__animated-img {
+  margin-top: -200px;
+  margin-bottom: -10px;
+}
+
+.loader__text {
+  text-align: center;
+  font-size: 20px;
+}

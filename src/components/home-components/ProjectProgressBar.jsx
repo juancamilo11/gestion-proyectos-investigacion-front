@@ -27,3 +27,4 @@ const ProjectProgressBar = ({ specificObjectives }) => {
 };
 
 export default ProjectProgressBar;
+

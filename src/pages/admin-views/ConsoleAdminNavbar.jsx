@@ -40,6 +40,7 @@ const ConsoleAdminNavbar = () => {
         <span className="project-catalog__display-name"> {auth.name}</span>
       </div>
       <div className="project-catalog__sidebar-buttons admin-console__sidebar-buttons">
+
         <p>Vista de administrador de plataforma</p>
         <button
           className="project-catalog__logout-button"

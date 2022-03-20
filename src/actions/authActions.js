@@ -78,6 +78,7 @@ export const startGoogleLogin = () => {
 };
 
 export const startFetchUserInfo = async (userInfo) => {
+
   try {
     const herokuResponse = await fetch(`${urlBase}/post/user`, {
       method: "POST",
@@ -95,6 +96,7 @@ export const startFetchUserInfo = async (userInfo) => {
       "Se ha presentado el siguiente error: " + JSON.stringify(error)
     );
   }
+
 };
 
 export const startGoogleLogout = () => {

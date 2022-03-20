@@ -25,3 +25,4 @@ const ProjectInfoList = ({ projectList, setProjectList }) => {
 };
 
 export default ProjectInfoList;
+

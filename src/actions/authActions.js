@@ -40,6 +40,7 @@ export const logout = () => ({
   type: types.authLogout,
 });
 
+//Completada
 export const startGoogleLogin = () => {
   return async (dispatch) => {
     try {
@@ -58,11 +59,11 @@ export const startGoogleLogin = () => {
                 userInfo.displayName,
                 userInfo.email,
                 userInfo.photoURL,
-                userInfo.phoneNumber,
-                userInfo.dateOfEntry,
-                userInfo.role,
-                userInfo.career,
-                userInfo.researchProjectList
+                userInfo.phoneNumber || "",
+                userInfo.dateOfEntry || "",
+                userInfo.role || "RESEARCHER",
+                userInfo.career || { name: "", code: "" },
+                userInfo.researchProjectList || []
               )
             );
           }
@@ -77,37 +78,25 @@ export const startGoogleLogin = () => {
 };
 
 export const startFetchUserInfo = async (userInfo) => {
-  return {
-    id: "12345",
-    displayName: "Juan Camilo",
-    email: "juan@udea.edu.co",
-    photoURL: "http://foto.png",
-    phoneNumber: "2324325",
-    dateOfEntry: "2020-03-10",
-    role: "RESEARCH_LEADER",
-    // role: "RESEARCHER",
-    // role: "ADMINISTRATOR",
-    career: { name: "Ing. de Sistemas", code: "503" },
-    researchProjectList: [], //--> Agregar contenido
-  };
 
-  // try {
-  //   const herokuResponse = await fetch(`${urlBase}/post/user`, {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify(userInfo),
-  //   });
-  //   if (herokuResponse.ok) {
-  //     return await herokuResponse.json();
-  //   }
-  //   throw await herokuResponse.json();
-  // } catch (error) {
-  //   sweetAlertForRequestResponseError(
-  //     "Se ha presentado el siguiente error: " + JSON.stringify(error)
-  //   );
-  // }
+  try {
+    const herokuResponse = await fetch(`${urlBase}/post/user`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userInfo),
+    });
+    if (herokuResponse.ok) {
+      return await herokuResponse.json();
+    }
+    throw await herokuResponse.json();
+  } catch (error) {
+    sweetAlertForRequestResponseError(
+      "Se ha presentado el siguiente error: " + JSON.stringify(error)
+    );
+  }
+
 };
 
 export const startGoogleLogout = () => {

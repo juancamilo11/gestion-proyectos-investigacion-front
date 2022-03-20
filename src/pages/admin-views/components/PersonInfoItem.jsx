@@ -50,28 +50,28 @@ const PersonInfoItem = ({
     <div>
       <div className="project-form__objective-item">
         <img src={photoURL} className="project-form__researcher-photo" />
-        <div className="admin-console_user-info-item admin-console_user-name">
+        <div className="admin-console__user-info-item admin-console__user-name">
           <small>Nombre Completo</small>
           <p>{displayName}</p>
         </div>
 
-        <div className="admin-console_user-info-item admin-console_user-email">
+        <div className="admin-console__user-info-item admin-console__user-email">
           <small>Correo institucional</small>
           <p>{email}</p>
         </div>
 
-        <div className="admin-console_user-info-item admin-console_user-career">
+        <div className="admin-console__user-info-item admin-console__user-career">
           <small>Carrera universitaria</small>
           <p>{career?.name}</p>
           <span>{career?.code}</span>
         </div>
 
-        <div className="admin-console_user-info-item admin-console_user-phone">
+        <div className="admin-console__user-info-item admin-console__user-phone">
           <small>Teléfono</small>
           <p>{phoneNumber}</p>
         </div>
 
-        <div className="admin-console_user-info-item admin-console_user-dateOfEntry">
+        <div className="admin-console__user-info-item admin-console__user-dateOfEntry">
           <small>Fecha de Ingreso a la U</small>
           <p>{dateOfEntry}</p>
         </div>

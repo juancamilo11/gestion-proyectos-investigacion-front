@@ -2,6 +2,7 @@ import { urlBase } from "../environments/environment";
 import { v4 as uuidv4 } from "uuid";
 import { sweetAlertForRequestResponseError } from "../helpers/sweet-alert/sweetAlertBuilder";
 import types from "../types/types";
+import { async } from "@firebase/util";
 
 export const activeProjectToShow = (projectId, project) => ({
   type: types.setActiveProjectToShow,
@@ -83,6 +84,7 @@ export const fetchResearchInfoByEmail = async (newUserEmail) => {
     sweetAlertForRequestResponseError();
   }
 };
+
 export const startFetchAllPeople = async () => {
   try {
     const response = await fetch(`${urlBase}/get/users`);
@@ -154,3 +156,4 @@ export const startFetchAllEnrolledResearchersInProject = async (projectId) => {
   //   sweetAlertForRequestResponseError();
   // }
 };
+

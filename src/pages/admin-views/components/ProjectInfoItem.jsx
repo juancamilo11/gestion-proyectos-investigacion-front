@@ -75,3 +75,4 @@ const ProjectInfoItem = ({
 };
 
 export default ProjectInfoItem;
+

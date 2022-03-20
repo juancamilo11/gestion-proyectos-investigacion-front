@@ -23,8 +23,8 @@ const ConsoleAdminNavbar = () => {
   };
 
   return (
-    <div className="project-catalog_sidebar-navbar admin-console_navbar">
-      <div className="project-catalog_sidebar-user-info admin-console_user-info">
+    <div className="project-catalog__sidebar-navbar admin-console__navbar">
+      <div className="project-catalog__sidebar-user-info admin-console__user-info">
         {auth?.photoURL ? (
           <img
             // src={auth.photoURL}
@@ -39,7 +39,8 @@ const ConsoleAdminNavbar = () => {
         )}
         <span className="project-catalog__display-name"> {auth.name}</span>
       </div>
-      <div className="project-catalog_sidebar-buttons admin-console_sidebar-buttons">
+      <div className="project-catalog__sidebar-buttons admin-console__sidebar-buttons">
+
         <p>Vista de administrador de plataforma</p>
         <button
           className="project-catalog__logout-button"

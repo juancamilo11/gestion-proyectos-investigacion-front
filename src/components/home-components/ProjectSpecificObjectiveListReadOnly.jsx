@@ -4,7 +4,7 @@ import ProjectSpecificObjectiveItemReadOnly from "./ProjectSpecificObjectiveItem
 
 const ProjectSpecificObjectiveListReadOnly = ({ specificObjectives }) => {
   return (
-    <div className="project-form_specific-objectives-container project-view_specific-objectives-container">
+    <div className="project-form__specific-objectives-container project-view__specific-objectives-container">
       <div>
         <div>
           {specificObjectives.length === 0 ? (
@@ -22,7 +22,7 @@ const ProjectSpecificObjectiveListReadOnly = ({ specificObjectives }) => {
           )}
         </div>
       </div>
-      <div className="project-view_specific-objectives_main-container">
+      <div className="project-view__specific-objectives__main-container">
         {specificObjectives.map((specificObjective) => (
           <ProjectSpecificObjectiveItemReadOnly {...specificObjective} />
         ))}

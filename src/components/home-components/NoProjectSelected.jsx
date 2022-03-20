@@ -11,7 +11,8 @@ const NoProjectSelected = () => {
       <h3 className="no-project__title">
         No has seleccionado ningún proyecto de investigación aún.
       </h3>
-    </div>)
+    </div>
+  ); //Mostrar la vista con un grafíco y un texto de que no hay proyecto seleccionado
 };
 
 export default NoProjectSelected;

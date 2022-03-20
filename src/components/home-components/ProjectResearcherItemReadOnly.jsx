@@ -26,7 +26,7 @@ const ProjectResearcherItemReadOnly = ({
         <p>
           {career.name} - {career.code}
         </p>
-        <p className="project-form_researcher-role project-view_researcher-role">
+        <p className="project-form__researcher-role project-view__researcher-role">
           {role === "RESEARCH_LEADER"
             ? "Líder Investigadorrr"
             : "Investigadorr"}

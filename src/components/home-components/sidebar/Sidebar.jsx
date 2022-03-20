@@ -11,7 +11,7 @@ const projects = {
   projectsList: [
     {
       id: "3249KM-3C875843-53485C",
-      name: "Investigación de Microbacterias",
+      name: "Investigación de Sistemas de Información",
       budget: 3500000,
       objective: {
         generalObjective:
@@ -19,19 +19,19 @@ const projects = {
         specificObjectives: [
           {
             description: "descripcion objetivo especifico 1",
-            completed: false,
+            completed: true,
           },
           {
             description: "descripcion objetivo especifico 1",
-            completed: false,
+            completed: true,
           },
           {
             description: "descripcion objetivo especifico 1",
-            completed: false,
+            completed: true,
           },
           {
             description: "descripcion objetivo especifico 1",
-            completed: false,
+            completed: true,
           },
         ],
       },
@@ -73,7 +73,7 @@ const projects = {
     },
     {
       id: "023X9378-3C875843-53485C",
-      name: "Investigación de Microbacterias",
+      name: "Investigación de Virus y Bacterias",
       budget: 3500000,
       objective: {
         generalObjective:
@@ -104,7 +104,7 @@ const projects = {
     },
     {
       id: "345G45-3C875843-53485C",
-      name: "Investigación de Microbacterias",
+      name: "Investigación del Sistema solar",
       budget: 3500000,
       objective: {
         generalObjective:
@@ -135,7 +135,7 @@ const projects = {
     },
     {
       id: "345F3-3C875843-53485C",
-      name: "Investigación de Microbacterias",
+      name: "Investigación de las causas del suicidio",
       budget: 3500000,
       objective: {
         generalObjective:

@@ -9,7 +9,6 @@ const ProjectEntries = ({ projectListToShow }) => {
     return (
       <div>
         {auth.role === "RESEARCH_LEADER" && <NewProjectEntry />}
-        <NewProjectEntry />
         <div className="project-catalog__empty-entries-container">
           <h3 className="text-center">
             Estamos buscando los proyectos de investigación en los que estás

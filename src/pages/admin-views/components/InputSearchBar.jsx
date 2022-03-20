@@ -18,13 +18,13 @@ const InputSearchBar = ({ setSearchValue, inputPlaceholder }) => {
 
   return (
     <form onSubmit={handleSubmitForSearch}>
-      <div className="project-form_form-container admin-console_search-bar-container">
+      <div className="project-form__form-container admin-console__search-bar-container">
         <input
           type="text"
           autoFocus="true"
           name="searchValue"
           id="searchValue"
-          className="project-form_input admin-console_search-input"
+          className="project-form__input admin-console__search-input"
           autoComplete="off"
           value={searchValue}
           onChange={handleInputSearch}

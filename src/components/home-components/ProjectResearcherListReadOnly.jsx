@@ -22,7 +22,6 @@ const ProjectResearcherListReadOnly = ({ researcherList }) => {
           )}
         </h3>
       </div>
-      {JSON.stringify(researcherList)}
       {researcherList?.map((researcher) => (
         <ProjectResearcherItemReadOnly {...researcher} />
       ))}

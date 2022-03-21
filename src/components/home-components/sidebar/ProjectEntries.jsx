@@ -34,7 +34,6 @@ const ProjectEntries = ({ projectListToShow }) => {
         {projectListToShow.map((project) => (
           <ProjectEntry {...project} />
         ))}
-        {JSON.stringify(projectListToShow)}
       </div>
     );
   }

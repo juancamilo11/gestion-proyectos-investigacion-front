@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { startFetchAllEnrolledResearchersInProject } from "../../actions/projectActions";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  activeProjectToUpdate,
+  startFetchAllEnrolledResearchersInProject,
+} from "../../actions/projectActions";
 import ProjectProgressBar from "./ProjectProgressBar";
 import ProjectResearcherListReadOnly from "./ProjectResearcherListReadOnly";
 import ProjectSpecificObjectiveListReadOnly from "./ProjectSpecificObjectiveListReadOnly";
 const ProjectView = () => {
   const { activeProjectToShow } = useSelector((state) => state.projects);
+  const dispatch = useDispatch();
+  const { role } = useSelector((state) => state.auth);
   const [researcherList, setResearcherList] = useState([]);
   const {
     projectId,
@@ -24,6 +29,20 @@ const ProjectView = () => {
       }
     );
   }, []);
+
+  const handleModifyProject = (e) => {
+    e.preventDefault();
+    dispatch(
+      activeProjectToUpdate(projectId, {
+        name,
+        budget,
+        objective,
+        duration,
+        description,
+        researcherList,
+      })
+    );
+  };
 
   return (
     <div className="project-view__main-container">
@@ -54,6 +73,20 @@ const ProjectView = () => {
         Lista de estudiantes investigadores en el proyecto
       </small>
       <ProjectResearcherListReadOnly researcherList={researcherList} />
+
+      {role === "RESEARCH_LEADER" && (
+        <div
+          className="project-view__edit-project-container"
+          onClick={handleModifyProject}
+        >
+          <button
+            className="project-view__edit-project-btn"
+            onClick={handleModifyProject}
+          >
+            Editar
+          </button>
+        </div>
+      )}
     </div>
   );
 };

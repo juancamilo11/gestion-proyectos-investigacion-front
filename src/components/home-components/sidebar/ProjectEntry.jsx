@@ -33,20 +33,6 @@ const ProjectEntry = ({
     );
   };
 
-  const handleModifyProject = (e) => {
-    e.preventDefault();
-    dispatch(
-      activeProjectToUpdate(id, {
-        name,
-        budget,
-        objective,
-        duration,
-        description,
-        researcherIdList,
-      })
-    );
-  };
-
   return (
     <div
       className="project-catalog__project-entry"

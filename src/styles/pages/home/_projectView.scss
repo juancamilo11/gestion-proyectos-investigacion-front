@@ -3,6 +3,7 @@
   min-width: 645px;
   overflow-y: scroll;
   height: 100vh;
+  position: relative;
 }
 
 .no-project__main-container {
@@ -91,4 +92,34 @@
 
 .project-view__researcher-role {
   top: -5px;
+}
+
+.project-view__researcher-photo {
+  outline: 1px solid darkgray;
+  border: none;
+}
+
+.project-view__edit-project-container {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+
+.project-view__edit-project-btn {
+  cursor: pointer;
+  margin-left: 10px;
+  padding: 7px 10px;
+  border-radius: 3px;
+  outline: none;
+  border: 1px solid darkgray;
+  color: #000;
+  height: 40px;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.project-view__edit-project-btn:hover {
+  background-color: rgb(171, 158, 243);
+  transition: all 0.2s ease-in;
+  border: 1px solid darkgray;
 }

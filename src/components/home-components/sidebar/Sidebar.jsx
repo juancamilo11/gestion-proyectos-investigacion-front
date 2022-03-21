@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -15,6 +15,10 @@ const Sidebar = () => {
   const [projectListToShow, setProjectListToShow] = useState(
     projects.projectsList
   );
+
+  useEffect(() => {
+    setProjectListToShow(projects.projectsList);
+  });
 
   const [filterValue, setFilterValue] = useState("");
   const [hasFilters, setHasFilters] = useState(false);
@@ -39,7 +43,7 @@ const Sidebar = () => {
       }
     });
   };
-  // {"isConfirmed":true,"isDenied":false,"isDismissed":false,"value":"hola"}
+
   const handleLogout = (e) => {
     e.preventDefault();
     dispatch(startGoogleLogout());

@@ -15,12 +15,12 @@ const ProjectResearcherItemReadOnly = ({
         className="project-form__objective-item"
         style={{
           backgroundColor:
-            auth.uid === basicResearcherInfo.id ? "red" : "white",
+            auth.uid === basicResearcherInfo.id ? "#bdbdfc" : "white",
         }}
       >
         <img
-          src={basicResearcherInfo.photoURL}
-          className="project-form__researcher-photo"
+          src={`${basicResearcherInfo.photoURL}`}
+          className="project-form__researcher-photo project-view__researcher-photo"
         />
         <p>
           <b>-</b> {basicResearcherInfo.displayName}

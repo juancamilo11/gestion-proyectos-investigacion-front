@@ -11,9 +11,7 @@ import {
 } from "../../helpers/projectFormHelpers";
 import useForm from "../../hooks/useForm";
 import ErrorFlag from "../ui/ErrorFlag";
-import ProjectResearcherList, {
-  fakeResearcherList,
-} from "./ProjectResearcherList";
+import ProjectResearcherList from "./ProjectResearcherList";
 import ProjectSpecificObjectiveList from "./ProjectSpecificObjectiveList";
 
 const ProjectActualizationForm = () => {
@@ -25,15 +23,17 @@ const ProjectActualizationForm = () => {
   const [errorsState, setErrorsState] = useState(formInitialErrorState);
   const { activeProjectToUpdate } = useSelector((state) => state.projects);
   const [specificObjectives, setSpecificObjectives] = useState([]);
-  const [researcherList, setResearcherList] = useState(fakeResearcherList);
+  const [researcherList, setResearcherList] = useState([]);
 
   const {
-    id,
-    description,
+    projectId,
     name,
     budget,
-    objective,
-    duration,
+    generalObjective,
+    startingDate,
+    endingDate,
+    description,
+
     currentEmail,
     currentSpecificObjective,
   } = formValues;
@@ -80,14 +80,12 @@ const ProjectActualizationForm = () => {
 
   useEffect(() => {
     if (activeProjectToUpdate) {
+      console.log(activeProjectToUpdate);
       resetForm(getInitialFormValuesForUpdating(activeProjectToUpdate));
       setSpecificObjectives(
-        activeProjectToUpdate.objective.specificObjectives || []
+        activeProjectToUpdate.objective.specificObjectiveList
       );
-      //Fetch todos los investigadores de un proyecto de investigación
-      startFetchAllResearchersByProjectId(id).then((researcherList) => {
-        setResearcherList(researcherList);
-      });
+      setResearcherList(activeProjectToUpdate.researcherList);
     } else {
       resetForm(formInitialValues);
       setSpecificObjectives([]);
@@ -169,7 +167,7 @@ const ProjectActualizationForm = () => {
                 id="startingDate"
                 className="project-form__input project-form__input--middle"
                 autoComplete="off"
-                value={duration?.startingDate}
+                value={startingDate}
                 onChange={handleInputValidation}
               />
               <div className="project-form__input-separator"> - </div>
@@ -179,7 +177,7 @@ const ProjectActualizationForm = () => {
                 id="endingDate"
                 className="project-form__input project-form__input--middle"
                 autoComplete="off"
-                value={duration?.endingDate}
+                value={endingDate}
                 onChange={handleInputValidation}
               />
             </div>
@@ -232,7 +230,7 @@ const ProjectActualizationForm = () => {
                 id="generalObjective"
                 className="project-form__input project-form__textarea"
                 autoComplete="off"
-                value={objective?.generalObjective}
+                value={generalObjective}
                 onChange={handleInputValidation}
               />
             </div>

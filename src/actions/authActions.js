@@ -19,8 +19,7 @@ export const login = (
   phoneNumber,
   dateOfEntry,
   role,
-  career,
-  researchProjectList
+  career
 ) => ({
   type: types.authLogin,
   payload: {
@@ -28,11 +27,10 @@ export const login = (
     displayName,
     email,
     photoURL,
-    phoneNumber: phoneNumber || "",
-    dateOfEntry: dateOfEntry || "",
-    role: role || "RESEARCHER",
-    career: career || { name: "", code: "" },
-    researchProjectList: researchProjectList || [],
+    phoneNumber,
+    dateOfEntry,
+    role,
+    career,
   },
 });
 
@@ -53,17 +51,18 @@ export const startGoogleLogin = () => {
       } else {
         startFetchUserInfo({ id, displayName, email, photoURL }).then(
           (userInfo) => {
+            window.alert(JSON.stringify(userInfo));
+            window.alert(JSON.stringify(userInfo));
             dispatch(
               login(
-                userInfo.id,
-                userInfo.displayName,
-                userInfo.email,
-                userInfo.photoURL,
-                userInfo.phoneNumber || "",
-                userInfo.dateOfEntry || "",
-                userInfo.role || "RESEARCHER",
-                userInfo.career || { name: "", code: "" },
-                userInfo.researchProjectList || []
+                userInfo.basicResearcherInfo.id,
+                userInfo.basicResearcherInfo.displayName,
+                userInfo.basicResearcherInfo.email,
+                userInfo.basicResearcherInfo.photoURL,
+                userInfo.phoneNumber,
+                userInfo.dateOfEntry,
+                userInfo.role,
+                userInfo.career
               )
             );
           }
@@ -78,7 +77,6 @@ export const startGoogleLogin = () => {
 };
 
 export const startFetchUserInfo = async (userInfo) => {
-
   try {
     const herokuResponse = await fetch(`${urlBase}/post/user`, {
       method: "POST",
@@ -96,7 +94,6 @@ export const startFetchUserInfo = async (userInfo) => {
       "Se ha presentado el siguiente error: " + JSON.stringify(error)
     );
   }
-
 };
 
 export const startGoogleLogout = () => {

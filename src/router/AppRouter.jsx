@@ -26,15 +26,14 @@ const AppRouter = () => {
           (userInfo) => {
             dispatch(
               login(
-                userInfo.id,
-                userInfo.displayName,
-                userInfo.email,
-                userInfo.photoURL,
+                userInfo.basicResearcherInfo.id,
+                userInfo.basicResearcherInfo.displayName,
+                userInfo.basicResearcherInfo.email,
+                userInfo.basicResearcherInfo.photoURL,
                 userInfo.phoneNumber,
                 userInfo.dateOfEntry,
                 userInfo.role,
-                userInfo.career,
-                userInfo.researchProjectList
+                userInfo.career
               )
             );
           }

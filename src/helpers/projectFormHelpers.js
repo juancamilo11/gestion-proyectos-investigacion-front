@@ -1,9 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
 
-const getLocalDate = () => {
-  return new Date().toISOString().split("T")[0];
-};
-
 const getCurrentDate = () => new Date().toISOString().split("T")[0];
 
 export const formInitialValues = {

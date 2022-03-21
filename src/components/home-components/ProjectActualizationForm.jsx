@@ -4,6 +4,7 @@ import {
   fetchResearchInfoByEmail,
   startFetchAllResearchersByProjectId,
 } from "../../actions/projectActions";
+import projectFormValidation from "../../helpers/projectForm/formHelpers";
 import {
   formInitialErrorState,
   formInitialValues,
@@ -40,6 +41,18 @@ const ProjectActualizationForm = () => {
 
   const handleProjectFormSubmit = (e) => {
     e.preventDefault();
+    projectFormValidation(
+      {
+        projectId,
+        name,
+        budget,
+        generalObjective,
+        startingDate,
+        endingDate,
+        description,
+      },
+      setErrorsState
+    );
   };
 
   const handleAddNewSpecificObjective = (e) => {
@@ -50,7 +63,7 @@ const ProjectActualizationForm = () => {
     const cleanEvent = {
       target: { name: "currentSpecificObjective", value: "" },
     };
-    if (newObjective === "" || newObjective.length > 300) return;
+    if (newObjective === "" || newObjective.length > 100) return;
     setSpecificObjectives([
       { name: newObjective, completed: false },
       ...specificObjectives,
@@ -65,7 +78,7 @@ const ProjectActualizationForm = () => {
       target: { name: "v", value: "" },
     };
     if (newEmail === "") return;
-    fetchResearchInfoByEmail(newEmail).then((newResearcherInfo) => {
+    newEmail.then((newResearcherInfo) => {
       setResearcherList((researcherList) => [
         newResearcherInfo,
         ...researcherList,

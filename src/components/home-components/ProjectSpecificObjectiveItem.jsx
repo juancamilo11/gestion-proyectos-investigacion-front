@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 const ProjectSpecificObjectiveItem = ({
-  name,
+  description,
   completed,
   setSpecificObjectives,
 }) => {
@@ -9,7 +9,9 @@ const ProjectSpecificObjectiveItem = ({
   const handleDeleteSpecificObjective = (e) => {
     e.preventDefault();
     setSpecificObjectives((specificObjectives) =>
-      specificObjectives.filter((objective) => objective.name !== name)
+      specificObjectives.filter(
+        (objective) => objective.description !== description
+      )
     );
   };
 
@@ -17,7 +19,7 @@ const ProjectSpecificObjectiveItem = ({
     e.preventDefault();
     setSpecificObjectives((specificObjectives) =>
       specificObjectives.map((objective) =>
-        objective.name === name
+        objective.description === description
           ? { ...objective, completed: !isCompleted }
           : objective
       )
@@ -29,7 +31,7 @@ const ProjectSpecificObjectiveItem = ({
     <div>
       <div className="project-form__objective-item">
         <p>
-          <b>-</b> {name}
+          <b>-</b> {description}
         </p>
 
         <div className="project-form-specific-objective-info">

@@ -1,4 +1,5 @@
 import validator from "validator";
+import moment from "moment";
 
 const projectFormValidation = (formValues, setErrorsState) => {
   return validateFormValues(formValues, setErrorsState);
@@ -33,12 +34,15 @@ const validateFormValues = (formValues, setErrorsState) => {
     description,
   } = formValues;
 
-  validateProjectName(name, setErrorsState);
-  validateProjectBudget(budget, setErrorsState);
-  validateProjectGeneralObjective(generalObjective, setErrorsState);
-  validateProjectStartingDate(startingDate, setErrorsState);
-  validateProjectEndingDate(endingDate, setErrorsState);
-  validateProjectDescription(description, setErrorsState);
+  return (
+    validateProjectName(name, setErrorsState) &&
+    validateProjectDescription(description, setErrorsState) &&
+    validateProjectBudget(budget, setErrorsState) &&
+    validateProjectGeneralObjective(generalObjective, setErrorsState) &&
+    validateProjectStartingDate(startingDate, setErrorsState) &&
+    validateProjectEndingDate(endingDate, setErrorsState) &&
+    validateProjectDates(startingDate, endingDate, setErrorsState)
+  );
 };
 
 const validateProjectName = (name, setErrorsState) => {
@@ -87,13 +91,23 @@ const validateProjectGeneralObjective = (generalObjective, setErrorsState) => {
 };
 
 const validateProjectStartingDate = (startingDate, setErrorsState) => {
-  if (validator.isAfter(startingDate, getCurrentDate())) {
-    setErrorStateForField(
-      setErrorsState,
-      "startingDate",
-      true,
-      "Error, La fecha de inicio del proyecto debe estar en el futuro"
-    );
+  const theStartingDate = moment(startingDate);
+  const now = moment();
+  if (theStartingDate.isBefore(now)) {
+    setErrorsState((state) => {
+      const endingDate = state.duration.endingDate;
+      return {
+        ...state,
+        duration: {
+          endingDate,
+          startingDate: {
+            hasErrors: true,
+            message:
+              "Error, La fecha de inicio del proyecto debe estar en el futuro.",
+          },
+        },
+      };
+    });
     return false;
   }
   setErrorStateForField(setErrorsState, "startingDate", false, "");
@@ -101,13 +115,23 @@ const validateProjectStartingDate = (startingDate, setErrorsState) => {
 };
 
 const validateProjectEndingDate = (endingDate, setErrorsState) => {
-  if (validator.isAfter(endingDate, getCurrentDate())) {
-    setErrorStateForField(
-      setErrorsState,
-      "endingDate",
-      true,
-      "Error, La fecha de finalización del proyecto debe estar en el futuro"
-    );
+  const theEndingDate = moment(endingDate);
+  const now = moment();
+  if (theEndingDate.isBefore(now)) {
+    setErrorsState((state) => {
+      const startingDate = state.duration.startingDate;
+      return {
+        ...state,
+        duration: {
+          startingDate,
+          endingDate: {
+            hasErrors: true,
+            message:
+              "Error, La fecha de finalización del proyecto debe estar en el futuro.",
+          },
+        },
+      };
+    });
     return false;
   }
   setErrorStateForField(setErrorsState, "endingDate", false, "");
@@ -115,13 +139,24 @@ const validateProjectEndingDate = (endingDate, setErrorsState) => {
 };
 
 const validateProjectDates = (startingDate, endingDate, setErrorsState) => {
-  if (validator.isAfter(endingDate, startingDate)) {
-    setErrorStateForField(
-      setErrorsState,
-      "endingDate",
-      true,
-      "Error, La fecha de inicio debe estar antes que la fecha de finalización finalización del proyecto debe estar en el futuro"
-    );
+  const theStartingDate = moment(startingDate);
+  const theEndingDate = moment(endingDate);
+
+  if (theEndingDate.isBefore(theStartingDate)) {
+    setErrorsState((state) => {
+      const startingDate = state.duration.startingDate;
+      return {
+        ...state,
+        duration: {
+          startingDate,
+          endingDate: {
+            hasErrors: true,
+            message:
+              "Error, La fecha de finalización del proyecto debe estar después que la fecha de inicio.",
+          },
+        },
+      };
+    });
     return false;
   }
   setErrorStateForField(setErrorsState, "endingDate", false, "");

@@ -159,7 +159,7 @@ const ProjectActualizationForm = () => {
               />
             </div>
             <div className="project-form__error-flag mt-2 mb-4">
-              {errorsState.objective.hasErrors && (
+              {errorsState.description.hasErrors && (
                 <ErrorFlag
                   message={errorsState.description.message}
                   color="red"

@@ -4,12 +4,15 @@ import {
   fetchResearchInfoByEmail,
   startFetchAllResearchersByProjectId,
 } from "../../actions/projectActions";
-import projectFormValidation from "../../helpers/projectForm/formHelpers";
+import projectFormValidation, {
+  isTheSpecificObjectiveAlreadyDefined,
+} from "../../helpers/projectForm/formHelpers";
 import {
   formInitialErrorState,
   formInitialValues,
   getInitialFormValuesForUpdating,
 } from "../../helpers/projectFormHelpers";
+import { sweetAlertForSpecificObjectiveAlreadyDefined } from "../../helpers/sweet-alert/sweetAlertBuilder";
 import useForm from "../../hooks/useForm";
 import ErrorFlag from "../ui/ErrorFlag";
 import ProjectResearcherList from "./ProjectResearcherList";
@@ -64,8 +67,13 @@ const ProjectActualizationForm = () => {
       target: { name: "currentSpecificObjective", value: "" },
     };
     if (newObjective === "" || newObjective.length > 100) return;
+    if (
+      isTheSpecificObjectiveAlreadyDefined(newObjective, specificObjectives)
+    ) {
+      sweetAlertForSpecificObjectiveAlreadyDefined(newObjective);
+    }
     setSpecificObjectives([
-      { name: newObjective, completed: false },
+      { description: newObjective, completed: false },
       ...specificObjectives,
     ]);
     handleInputChange(cleanEvent);

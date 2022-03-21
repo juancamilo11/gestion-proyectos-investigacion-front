@@ -158,3 +158,14 @@ export const sweetAlertForDisplayProjectObjectives = (name, objective) =>
     allowEscapeKey: true,
     allowOutsideClick: true,
   });
+
+export const sweetAlertForSpecificObjectiveAlreadyDefined = (newObjective) =>
+  Swal.fire({
+    icon: "error",
+    html: `El objetivo específico <b>${newObjective}</b> ya está definido, intenta con otro valor.`,
+    showCancelButton: false,
+    showConfirmButton: false,
+    allowEscapeKey: true,
+    allowOutsideClick: true,
+    timer: 5000,
+  });

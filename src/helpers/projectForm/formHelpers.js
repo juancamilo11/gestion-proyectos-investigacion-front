@@ -177,4 +177,13 @@ const validateProjectDescription = (description, setErrorsState) => {
   return true;
 };
 
+export const isTheSpecificObjectiveAlreadyDefined = (
+  newObjective,
+  specificObjectives
+) => {
+  return specificObjectives
+    .map((specificObjective) => specificObjective.description.toLowerCase())
+    .includes(newObjective.toLowerCase());
+};
+
 export default projectFormValidation;

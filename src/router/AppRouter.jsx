@@ -9,6 +9,7 @@ import LoginPage from "../pages/login/LoginPage";
 import DashboardRoutes from "./DashboardRoutes";
 import PrivateRoute from "./PrivateRoute";
 import fakeUserInfo from "../helpers/fakeData/fakeUserData";
+import { startFetchProjectsByResearcherId } from "../actions/projectActions";
 
 const AppRouter = () => {
   const [checkingAuthState, setCheckingAuthState] = useState(true);
@@ -35,6 +36,9 @@ const AppRouter = () => {
                 userInfo.role,
                 userInfo.career
               )
+            );
+            dispatch(
+              startFetchProjectsByResearcherId(userInfo.basicResearcherInfo.id)
             );
           }
         );

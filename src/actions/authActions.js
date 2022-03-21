@@ -8,6 +8,7 @@ import {
   sweetAlertForInvalidUserEmail,
   sweetAlertForRequestResponseError,
 } from "../helpers/sweet-alert/sweetAlertBuilder";
+import { startFetchProjectsByResearcherId } from "./projectActions";
 const auth = getAuth();
 const provider = new GoogleAuthProvider();
 
@@ -51,8 +52,6 @@ export const startGoogleLogin = () => {
       } else {
         startFetchUserInfo({ id, displayName, email, photoURL }).then(
           (userInfo) => {
-            window.alert(JSON.stringify(userInfo));
-            window.alert(JSON.stringify(userInfo));
             dispatch(
               login(
                 userInfo.basicResearcherInfo.id,
@@ -64,6 +63,9 @@ export const startGoogleLogin = () => {
                 userInfo.role,
                 userInfo.career
               )
+            );
+            dispatch(
+              startFetchProjectsByResearcherId(userInfo.basicResearcherInfo.id)
             );
           }
         );

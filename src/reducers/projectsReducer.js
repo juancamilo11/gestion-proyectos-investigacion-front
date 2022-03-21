@@ -62,7 +62,7 @@ export const ProjectsReducer = (state = initialState, action) => {
     case types.loadProjects:
       return {
         ...state,
-        projectsList: [...action.payload],
+        projectsList: action.payload,
       };
 
     case types.projectsLogoutCleaning:

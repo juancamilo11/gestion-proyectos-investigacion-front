@@ -44,6 +44,28 @@ const fetchAllUserProjects = (allUserProjects) => ({
   payload: allUserProjects,
 });
 
+const loadProjects = (projects) => ({
+  type: types.loadProjects,
+  payload: projects,
+});
+
+export const startFetchProjectsByResearcherId = (researcherId) => {
+  return async (dispatch) => {
+    try {
+      const response = await fetch(
+        `${urlBase}/get/projects/user/${researcherId}`
+      );
+      if (response.ok) {
+        const projectsList = await response.json();
+        dispatch(loadProjects(projectsList));
+      }
+      throw await response.json();
+    } catch (error) {
+      sweetAlertForRequestResponseError();
+    }
+  };
+};
+
 export const startFetchAllResearchersByProjectId = async (projectId) => {
   try {
     const response = await fetch(`${urlBase}/get/users/project/${projectId}`);
@@ -156,4 +178,3 @@ export const startFetchAllEnrolledResearchersInProject = async (projectId) => {
   //   sweetAlertForRequestResponseError();
   // }
 };
-

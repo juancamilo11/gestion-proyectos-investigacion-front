@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { startFetchAllEnrolledResearchersInProject } from "../../actions/projectActions";
 import ErrorFlag from "../ui/ErrorFlag";
 import ProjectResearcherItemReadOnly from "./ProjectResearcherItemReadOnly";
 
@@ -7,7 +8,7 @@ const ProjectResearcherListReadOnly = ({ researcherList }) => {
     <div className="project-form__researcher-list-container">
       <div>
         <h3>
-          {researcherList.length === 0 ? (
+          {researcherList?.length === 0 ? (
             <ErrorFlag
               message="Aún no hay investigadores agregados al proyecto"
               color="#f54d4d"
@@ -21,7 +22,8 @@ const ProjectResearcherListReadOnly = ({ researcherList }) => {
           )}
         </h3>
       </div>
-      {researcherList.map((researcher) => (
+      {JSON.stringify(researcherList)}
+      {researcherList?.map((researcher) => (
         <ProjectResearcherItemReadOnly {...researcher} />
       ))}
     </div>

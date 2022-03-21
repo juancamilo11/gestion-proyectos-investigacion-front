@@ -2,10 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 const ProjectResearcherItemReadOnly = ({
-  id,
-  displayName,
-  email,
-  photoURL,
+  basicResearcherInfo,
   phoneNumber,
   dateOfEntry,
   role,
@@ -16,13 +13,19 @@ const ProjectResearcherItemReadOnly = ({
     <div>
       <div
         className="project-form__objective-item"
-        style={{ backgroundColor: auth.uid === id ? "red" : "white" }}
+        style={{
+          backgroundColor:
+            auth.uid === basicResearcherInfo.id ? "red" : "white",
+        }}
       >
-        <img src={photoURL} className="project-form__researcher-photo" />
+        <img
+          src={basicResearcherInfo.photoURL}
+          className="project-form__researcher-photo"
+        />
         <p>
-          <b>-</b> {displayName}
+          <b>-</b> {basicResearcherInfo.displayName}
         </p>
-        <p>{email}</p>
+        <p>{basicResearcherInfo.email}</p>
         <p>
           {career.name} - {career.code}
         </p>

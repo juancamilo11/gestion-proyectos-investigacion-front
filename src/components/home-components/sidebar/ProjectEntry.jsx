@@ -5,7 +5,15 @@ import {
   activeProjectToUpdate,
 } from "../../../actions/projectActions";
 
-const ProjectEntry = ({ id, name, budget, objective, duration }) => {
+const ProjectEntry = ({
+  id,
+  name,
+  budget,
+  projectObjective: objective,
+  projectDuration: duration,
+  description,
+  researcherIdList,
+}) => {
   const dispatch = useDispatch();
   const { projects, auth } = useSelector((state) => state);
   const activeProject = projects.activeProjectToShow;
@@ -19,6 +27,8 @@ const ProjectEntry = ({ id, name, budget, objective, duration }) => {
         budget,
         objective,
         duration,
+        description,
+        researcherIdList,
       })
     );
   };
@@ -31,6 +41,8 @@ const ProjectEntry = ({ id, name, budget, objective, duration }) => {
         budget,
         objective,
         duration,
+        description,
+        researcherIdList,
       })
     );
   };

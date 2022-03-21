@@ -30,14 +30,11 @@ const ProjectEntries = ({ projectListToShow }) => {
   } else {
     return (
       <div className="project-catalog__entries">
-        {/* {auth.role === "RESEARCH_LEADER" && <NewProjectEntry />} */}
-
-        {/* //---------PRUEBA_______ */}
         {auth.role === "RESEARCH_LEADER" && <NewProjectEntry />}
-        {/* //---------PRUEBA_______ */}
         {projectListToShow.map((project) => (
           <ProjectEntry {...project} />
         ))}
+        {JSON.stringify(projectListToShow)}
       </div>
     );
   }

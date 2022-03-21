@@ -40,7 +40,6 @@ const PersonInfoItem = ({
         if (res.isConfirmed) {
           //FALTA ENVIAR PETICIÓN AL BACK PARA EL CAMBIO DE ROL
           setNewRole(selectedRole);
-          window.alert("el nuevo rol de " + displayName + " es " + newRole);
         }
       }
     );

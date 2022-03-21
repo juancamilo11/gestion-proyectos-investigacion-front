@@ -148,7 +148,7 @@ const ProjectActualizationForm = () => {
             <div className="project-form__error-flag mt-2 mb-4">
               {errorsState.objective.hasErrors && (
                 <ErrorFlag
-                  message={errorsState.objective.message}
+                  message={errorsState.description.message}
                   color="red"
                 />
               )}
@@ -182,17 +182,17 @@ const ProjectActualizationForm = () => {
               />
             </div>
             <div className="project-form__error-flag mt-2 mb-4">
-              {errorsState?.startingDate?.hasErrors && (
+              {errorsState.duration.startingDate.hasErrors && (
                 <ErrorFlag
-                  message={errorsState?.startingDate?.message}
+                  message={errorsState.duration.startingDate.message}
                   color="red"
                 />
               )}
             </div>
             <div className="project-form__error-flag mt-2 mb-4">
-              {errorsState?.endingDate?.hasErrors && (
+              {errorsState.duration.endingDate.hasErrors && (
                 <ErrorFlag
-                  message={errorsState?.endingDate?.message}
+                  message={errorsState.duration.endingDate.message}
                   color="red"
                 />
               )}
@@ -235,9 +235,9 @@ const ProjectActualizationForm = () => {
               />
             </div>
             <div className="project-form__error-flag mt-2 mb-4">
-              {errorsState?.generalObjective?.hasErrors && (
+              {errorsState.objective.generalObjective.hasErrors && (
                 <ErrorFlag
-                  message={errorsState?.generalObjective?.message}
+                  message={errorsState.objective.generalObjective.message}
                   color="red"
                 />
               )}
@@ -266,6 +266,14 @@ const ProjectActualizationForm = () => {
               >
                 Ingresar
               </button>
+            </div>
+            <div className="project-form__error-flag mt-2 mb-4">
+              {errorsState.currentSpecificObjective.hasErrors && (
+                <ErrorFlag
+                  message={errorsState.currentSpecificObjective.message}
+                  color="red"
+                />
+              )}
             </div>
 
             <ProjectSpecificObjectiveList
@@ -298,7 +306,14 @@ const ProjectActualizationForm = () => {
                 Ingresar
               </button>
             </div>
-
+            <div className="project-form__error-flag mt-2 mb-4">
+              {errorsState.currentEmail.hasErrors && (
+                <ErrorFlag
+                  message={errorsState.currentEmail.message}
+                  color="red"
+                />
+              )}
+            </div>
             <ProjectResearcherList
               researcherList={researcherList}
               setResearcherList={setResearcherList}

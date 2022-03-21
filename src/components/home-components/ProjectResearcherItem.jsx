@@ -3,10 +3,7 @@ import { createRoutesFromChildren } from "react-router-dom";
 import { sweetAlertForDeleteAResearchFromAProject } from "../../helpers/sweet-alert/sweetAlertBuilder";
 
 const ProjectResearcherItem = ({
-  id,
-  displayName,
-  email,
-  photoURL,
+  basicResearcherInfo,
   phoneNumber,
   dateOfEntry,
   role,
@@ -15,25 +12,31 @@ const ProjectResearcherItem = ({
 }) => {
   const handleDeleteResearcher = (e) => {
     e.preventDefault();
-    sweetAlertForDeleteAResearchFromAProject(displayName, photoURL).then(
-      (res) => {
-        if (res.isConfirmed) {
-          setResearcherList((researcherList) =>
-            researcherList.filter((researcher) => researcher.id !== id)
-          );
-        }
+    sweetAlertForDeleteAResearchFromAProject(
+      basicResearcherInfo.displayName,
+      basicResearcherInfo.photoURL
+    ).then((res) => {
+      if (res.isConfirmed) {
+        setResearcherList((researcherList) =>
+          researcherList.filter(
+            (researcher) => researcher.id !== basicResearcherInfo.id
+          )
+        );
       }
-    );
+    });
   };
 
   return (
     <div>
       <div className="project-form__objective-item">
-        <img src={photoURL} className="project-form__researcher-photo" />
+        <img
+          src={basicResearcherInfo.photoURL}
+          className="project-form__researcher-photo"
+        />
         <p>
-          <b>-</b> {displayName}
+          <b>-</b> {basicResearcherInfo.displayName}
         </p>
-        <p>{email}</p>
+        <p>{basicResearcherInfo.email}</p>
         <p>
           {career.name} - {career.code}
         </p>

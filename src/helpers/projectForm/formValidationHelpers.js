@@ -6,8 +6,6 @@ const projectFormValidation = (formValues, setErrorsState) => {
   return validateFormValues(formValues, setErrorsState);
 };
 
-const getCurrentDate = () => new Date().toISOString().split("T")[0];
-
 const setErrorStateForField = (
   setErrorsState,
   fieldName,
@@ -111,7 +109,19 @@ const validateProjectStartingDate = (startingDate, setErrorsState) => {
     });
     return false;
   }
-  setErrorStateForField(setErrorsState, "startingDate", false, "");
+  setErrorsState((state) => {
+    const endingDate = state.duration.endingDate;
+    return {
+      ...state,
+      duration: {
+        endingDate,
+        startingDate: {
+          hasErrors: false,
+          message: "",
+        },
+      },
+    };
+  });
   return true;
 };
 
@@ -135,7 +145,19 @@ const validateProjectEndingDate = (endingDate, setErrorsState) => {
     });
     return false;
   }
-  setErrorStateForField(setErrorsState, "endingDate", false, "");
+  setErrorsState((state) => {
+    const startingDate = state.duration.startingDate;
+    return {
+      ...state,
+      duration: {
+        startingDate,
+        endingDate: {
+          hasErrors: false,
+          message: "",
+        },
+      },
+    };
+  });
   return true;
 };
 
@@ -145,11 +167,14 @@ const validateProjectDates = (startingDate, endingDate, setErrorsState) => {
 
   if (theEndingDate.isBefore(theStartingDate)) {
     setErrorsState((state) => {
-      const startingDate = state.duration.startingDate;
       return {
         ...state,
         duration: {
-          startingDate,
+          startingDate: {
+            hasErrors: true,
+            message:
+              "Error, La fecha de inicio del proyecto debe estar antes que la fecha de finalización.",
+          },
           endingDate: {
             hasErrors: true,
             message:
@@ -160,7 +185,32 @@ const validateProjectDates = (startingDate, endingDate, setErrorsState) => {
     });
     return false;
   }
-  setErrorStateForField(setErrorsState, "endingDate", false, "");
+  setErrorsState((state) => {
+    const endingDate = state.duration.endingDate;
+    return {
+      ...state,
+      duration: {
+        endingDate,
+        startingDate: {
+          hasErrors: false,
+          message: "",
+        },
+      },
+    };
+  });
+  setErrorsState((state) => {
+    const startingDate = state.duration.startingDate;
+    return {
+      ...state,
+      duration: {
+        startingDate,
+        endingDate: {
+          hasErrors: false,
+          message: "",
+        },
+      },
+    };
+  });
   return true;
 };
 

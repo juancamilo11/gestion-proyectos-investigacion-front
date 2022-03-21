@@ -7,7 +7,7 @@ import {
 import projectFormValidation, {
   isTheSpecificObjectiveAlreadyDefined,
   validateNewResearcherEmail,
-} from "../../helpers/projectForm/formHelpers";
+} from "../../helpers/projectForm/formValidationHelpers";
 import {
   formInitialErrorState,
   formInitialValues,

@@ -169,3 +169,14 @@ export const sweetAlertForSpecificObjectiveAlreadyDefined = (newObjective) =>
     allowOutsideClick: true,
     timer: 5000,
   });
+
+export const sweetAlertForInvalidEmailInput = (newEmail) =>
+  Swal.fire({
+    icon: "error",
+    html: `El valor <b>${newEmail}</b> no corresponde a un correo institucional de la Universidad de Antioquia.`,
+    showCancelButton: false,
+    showConfirmButton: false,
+    allowEscapeKey: true,
+    allowOutsideClick: true,
+    timer: 5000,
+  });

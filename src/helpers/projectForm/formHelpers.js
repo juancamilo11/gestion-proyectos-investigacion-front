@@ -1,5 +1,6 @@
-import validator from "validator";
 import moment from "moment";
+import validator from "validator";
+import { validateEmail } from "../login/emailDomainValidator";
 
 const projectFormValidation = (formValues, setErrorsState) => {
   return validateFormValues(formValues, setErrorsState);
@@ -185,5 +186,8 @@ export const isTheSpecificObjectiveAlreadyDefined = (
     .map((specificObjective) => specificObjective.description.toLowerCase())
     .includes(newObjective.toLowerCase());
 };
+
+export const validateNewResearcherEmail = (email) =>
+  validator.isEmail(email) && validateEmail(email);
 
 export default projectFormValidation;

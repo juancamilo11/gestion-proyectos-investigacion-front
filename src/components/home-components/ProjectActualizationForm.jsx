@@ -6,13 +6,17 @@ import {
 } from "../../actions/projectActions";
 import projectFormValidation, {
   isTheSpecificObjectiveAlreadyDefined,
+  validateNewResearcherEmail,
 } from "../../helpers/projectForm/formHelpers";
 import {
   formInitialErrorState,
   formInitialValues,
   getInitialFormValuesForUpdating,
 } from "../../helpers/projectFormHelpers";
-import { sweetAlertForSpecificObjectiveAlreadyDefined } from "../../helpers/sweet-alert/sweetAlertBuilder";
+import {
+  sweetAlertForInvalidEmailInput,
+  sweetAlertForSpecificObjectiveAlreadyDefined,
+} from "../../helpers/sweet-alert/sweetAlertBuilder";
 import useForm from "../../hooks/useForm";
 import ErrorFlag from "../ui/ErrorFlag";
 import ProjectResearcherList from "./ProjectResearcherList";
@@ -71,6 +75,7 @@ const ProjectActualizationForm = () => {
       isTheSpecificObjectiveAlreadyDefined(newObjective, specificObjectives)
     ) {
       sweetAlertForSpecificObjectiveAlreadyDefined(newObjective);
+      return;
     }
     setSpecificObjectives([
       { description: newObjective, completed: false },
@@ -83,9 +88,13 @@ const ProjectActualizationForm = () => {
     e.preventDefault();
     const newEmail = document.getElementById("currentEmail").value.trim();
     const cleanEvent = {
-      target: { name: "v", value: "" },
+      target: { name: "currentEmail", value: "" },
     };
     if (newEmail === "") return;
+    if (!validateNewResearcherEmail(newEmail)) {
+      sweetAlertForInvalidEmailInput(newEmail);
+      return;
+    }
     newEmail.then((newResearcherInfo) => {
       setResearcherList((researcherList) => [
         newResearcherInfo,

@@ -1,26 +1,29 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import { startDeleteResearchProjectById } from "../../../actions/projectActions";
 import {
   sweetAlertForDeleteAProjectFromApplication,
   sweetAlertForDisplayProjectObjectives,
 } from "../../../helpers/sweet-alert/sweetAlertBuilder";
 
 const ProjectInfoItem = ({
-  projectId,
+  id: projectId,
   name,
   budget,
-  objective,
-  duration,
+  projectObjective: objective,
+  projectDuration: duration,
   setProjectList,
 }) => {
+  const navigate = useNavigate();
+
   const handleDeleteProjectFromApplication = (e) => {
     e.preventDefault();
     sweetAlertForDeleteAProjectFromApplication(name, budget, duration).then(
       (res) => {
         if (res.isConfirmed) {
-          //FALTA ELIMINAR AQUÍ EL PROYECTO, ENVIAR PETICIÓN AL BACK
-          setProjectList((projectList) =>
-            projectList.filter((project) => project.projectId !== projectId)
-          );
+          startDeleteResearchProjectById(projectId).then((res) => {
+            navigate("/");
+          });
         }
       }
     );
@@ -75,4 +78,3 @@ const ProjectInfoItem = ({
 };
 
 export default ProjectInfoItem;
-

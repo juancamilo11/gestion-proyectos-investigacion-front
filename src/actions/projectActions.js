@@ -132,3 +132,29 @@ export const startPostNewResearchProject = async (researchProject) => {
     sweetAlertForRequestResponseError();
   }
 };
+
+export const startFetchAllProjects = async () => {
+  try {
+    const response = await fetch(`${urlBase}/get/projects/`);
+    if (response.ok) {
+      return await response.json();
+    }
+    throw await response.json();
+  } catch (error) {
+    sweetAlertForRequestResponseError();
+  }
+};
+
+export const startDeleteResearchProjectById = async (projectId) => {
+  try {
+    const response = await fetch(`${urlBase}/delete/project/${projectId}`, {
+      method: "DELETE",
+    });
+    if (response.ok) {
+      return await response.json();
+    }
+    throw await response.json();
+  } catch (error) {
+    sweetAlertForRequestResponseError();
+  }
+};

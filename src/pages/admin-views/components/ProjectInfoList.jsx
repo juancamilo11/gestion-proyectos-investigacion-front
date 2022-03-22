@@ -2,14 +2,14 @@ import React from "react";
 import ErrorFlag from "../../../components/ui/ErrorFlag";
 import ProjectInfoItem from "./ProjectInfoItem";
 
-const ProjectInfoList = ({ projectList, setProjectList }) => {
+const ProjectInfoList = ({ projectListToShow, setProjectList }) => {
   return (
     <div className="project-form__researcher-list-container">
       <div>
         <h3>
-          {projectList.length === 0 && (
+          {projectListToShow.length === 0 && (
             <ErrorFlag
-              message="Aún no hay proyectos de investigación registrados en la aplicación"
+              message="Aún no hay proyectos de investigación para mostrar"
               color="#f54d4d"
               fontColor="white"
               width="90%"
@@ -17,7 +17,7 @@ const ProjectInfoList = ({ projectList, setProjectList }) => {
           )}
         </h3>
       </div>
-      {projectList.map((project) => (
+      {projectListToShow.map((project) => (
         <ProjectInfoItem {...project} setProjectList={setProjectList} />
       ))}
     </div>
@@ -25,4 +25,3 @@ const ProjectInfoList = ({ projectList, setProjectList }) => {
 };
 
 export default ProjectInfoList;
-

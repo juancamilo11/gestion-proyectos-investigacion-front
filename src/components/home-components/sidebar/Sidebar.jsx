@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { startGoogleLogout } from "../../../actions/authActions";
-import { activeSearchPanel } from "../../../actions/projectActions";
-import { sweetAlertForSearchAndFilterProjectsBuilder } from "../../../helpers/sweet-alert/sweetAlertBuilder";
 import ProjectEntries from "./ProjectEntries";
 
 const Sidebar = () => {
@@ -22,27 +20,6 @@ const Sidebar = () => {
 
   const [filterValue, setFilterValue] = useState("");
   const [hasFilters, setHasFilters] = useState(false);
-
-  const handleOpenSearchPanel = (e) => {
-    e.preventDefault();
-    sweetAlertForSearchAndFilterProjectsBuilder().then((res) => {
-      if (res.isConfirmed) {
-        if (!res.value) {
-          Swal.fire({
-            icon: "error",
-            text: "Error, por favor ingrese un nombre válido para la búsqueda.",
-          });
-          return;
-        }
-        const newShowedProjects = projects.projectsList.filter((project) =>
-          project.name.toLowerCase().includes(res.value.toLowerCase())
-        );
-        setProjectListToShow(newShowedProjects);
-        setHasFilters(true);
-        setFilterValue(res.value);
-      }
-    });
-  };
 
   const handleLogout = (e) => {
     e.preventDefault();
@@ -72,22 +49,6 @@ const Sidebar = () => {
           <span className="project-catalog__display-name"> {auth.name}</span>
         </div>
         <div className="project-catalog__sidebar-buttons">
-          {hasFilters && (
-            <button
-              title={`Eliminar el filtro ${filterValue}`}
-              className="project-catalog__search-button project-catalog__delete-filter-button"
-              onClick={handleDeleteFilters}
-            >
-              <i className="fas fa-filter"></i>
-            </button>
-          )}
-
-          <button
-            className="project-catalog__search-button"
-            onClick={handleOpenSearchPanel}
-          >
-            Buscar y filtrar
-          </button>
           <button
             className="project-catalog__logout-button"
             onClick={handleLogout}

@@ -28,7 +28,7 @@ const ProjectView = () => {
         setResearcherList(enrolledResearchers);
       }
     );
-  }, []);
+  });
 
   const handleModifyProject = (e) => {
     e.preventDefault();

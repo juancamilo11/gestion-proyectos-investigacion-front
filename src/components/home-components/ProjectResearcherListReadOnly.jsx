@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { startFetchAllEnrolledResearchersInProject } from "../../actions/projectActions";
 import ErrorFlag from "../ui/ErrorFlag";
 import ProjectResearcherItemReadOnly from "./ProjectResearcherItemReadOnly";
 

@@ -9,6 +9,7 @@ const ProjectResearcherItemReadOnly = ({
   career,
 }) => {
   const { auth } = useSelector((state) => state);
+
   return (
     <div>
       <div

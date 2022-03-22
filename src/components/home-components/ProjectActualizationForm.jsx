@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Navigate, useNavigate } from "react-router-dom";
 import {
   activeProjectToShow,
   fetchResearchInfoByEmail,
   loadProjects,
   startFetchAllResearchersByProjectId,
+  startFetchProjectsByResearcherId,
   startPostNewResearchProject,
 } from "../../actions/projectActions";
 import buildResearchProject from "../../helpers/projectForm/formSubmitHelpers";
@@ -30,6 +32,7 @@ import ProjectResearcherList from "./ProjectResearcherList";
 import ProjectSpecificObjectiveList from "./ProjectSpecificObjectiveList";
 
 const ProjectActualizationForm = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { auth } = useSelector((state) => state);
   const { projectsList } = useSelector((state) => state.projects);
@@ -78,28 +81,10 @@ const ProjectActualizationForm = () => {
     );
     console.log(JSON.stringify(researchProjectObject));
     startPostNewResearchProject(researchProjectObject).then((projectResult) => {
-      const {
-        projectId,
-        name,
-        budget,
-        projectObjective: objective,
-        projectDuration: duration,
-        description,
-        researcherIdList,
-      } = projectResult;
-
-      dispatch(
-        activeProjectToShow(projectId, {
-          projectId,
-          name,
-          budget,
-          objective,
-          duration,
-          description,
-          researcherIdList,
-        })
-      );
-      dispatch(loadProjects([projectResult, ...projectsList]));
+      dispatch(startFetchProjectsByResearcherId(auth.uid));
+      resetForm(formInitialValues);
+      setResearcherList([getProjectLeaderInfo()]);
+      setSpecificObjectives([]);
     });
   };
 
@@ -165,6 +150,19 @@ const ProjectActualizationForm = () => {
     handleInputChange(e);
   };
 
+  const getProjectLeaderInfo = () => ({
+    basicResearcherInfo: {
+      id: auth.uid,
+      displayName: auth.name,
+      email: auth.email,
+      photoURL: auth.photoURL,
+    },
+    phoneNumber: auth.phoneNumber,
+    role: auth.role,
+    career: auth.career,
+    dateOfEntry: auth.dateOfEntry,
+  });
+
   useEffect(() => {
     if (activeProjectToUpdate) {
       resetForm(getInitialFormValuesForUpdating(activeProjectToUpdate));
@@ -175,18 +173,7 @@ const ProjectActualizationForm = () => {
     } else {
       resetForm(formInitialValues);
       setSpecificObjectives([]);
-      const creatorInfo = {
-        basicResearcherInfo: {
-          id: auth.uid,
-          displayName: auth.name,
-          email: auth.email,
-          photoURL: auth.photoURL,
-        },
-        phoneNumber: auth.phoneNumber,
-        role: auth.role,
-        career: auth.career,
-        dateOfEntry: auth.dateOfEntry,
-      };
+      const creatorInfo = getProjectLeaderInfo();
       setResearcherList([creatorInfo]);
     }
   }, [activeProjectToUpdate]);

@@ -80,30 +80,11 @@ export const startFetchAllResearchersByProjectId = async (projectId) => {
 
 export const fetchResearchInfoByEmail = async (newUserEmail) => {
   try {
-    const response = {
-      basicResearcherInfo: {
-        id: uuidv4(),
-        displayName: "Random name" + parseInt(Math.random() * 100),
-        email: newUserEmail,
-        photoURL:
-          "https://i.pinimg.com/originals/ae/8a/c2/ae8ac2fa217d23aadcc913989fcc34a2.png",
-      },
-      phoneNumber: "3122555499",
-      dateOfEntry: "2020-05-10",
-      role: "RESEARCHER",
-      career: {
-        name: "Ing. Química",
-        code: "513",
-      },
-    };
-
-    return response;
-
-    // const response = await fetch(`${urlBase}/get/user/email/${newUserEmail}`);
-    // if (response.ok) {
-    //   return await response.json();
-    // }
-    // throw await response.json();
+    const response = await fetch(`${urlBase}/get/user/email/${newUserEmail}`);
+    if (response.ok) {
+      return await response.json();
+    }
+    throw await response.json();
   } catch (error) {
     sweetAlertForRequestResponseError();
   }

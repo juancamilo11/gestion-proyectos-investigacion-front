@@ -11,11 +11,14 @@ const ProjectEntries = ({ projectListToShow }) => {
         {auth.role === "RESEARCH_LEADER" && <NewProjectEntry />}
         <div className="project-catalog__empty-entries-container">
           <h3 className="text-center">
-            Estamos buscando los proyectos de investigación en los que estás
-            matriculado
+            {auth.role === "RESEARCH_LEADER"
+              ? "Estamos buscando los proyectos de investigación que estás liderando"
+              : "Estamos buscando los proyectos de investigación en los que estás matriculado"}
           </h3>
           <h5 className="text-center">
-            Click en el botón de arriba para crear uno nuevo
+            {auth.role === "RESEARCH_LEADER"
+              ? "Click en el botón de arriba para crear uno nuevo"
+              : "Debes esperar que algún líder de investigación te agregue a un proyecto"}
           </h5>
           <img
             src={

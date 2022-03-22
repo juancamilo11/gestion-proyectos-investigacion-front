@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { startDeleteUserById } from "../../../actions/projectActions";
+import {
+  startChangeUserRole,
+  startDeleteUserById,
+} from "../../../actions/projectActions";
 import {
   sweetAlertForChangeRoleToUser,
   sweetAlertForDeleteAPersonFromApplication,
@@ -38,8 +41,9 @@ const PersonInfoItem = ({
     sweetAlertForChangeRoleToUser(displayName, photoURL, selectedRole).then(
       (res) => {
         if (res.isConfirmed) {
-          //FALTA ENVIAR PETICIÓN AL BACK PARA EL CAMBIO DE ROL
-          setNewRole(selectedRole);
+          startChangeUserRole(id, selectedRole).then((updatedUser) => {
+            setNewRole(selectedRole);
+          });
         }
       }
     );

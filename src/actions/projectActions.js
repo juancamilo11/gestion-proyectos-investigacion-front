@@ -158,3 +158,21 @@ export const startDeleteUserById = async (userId) => {
     throw await response.json();
   } catch (error) {}
 };
+
+export const startChangeUserRole = async (id, selectedRole) => {
+  try {
+    const response = await fetch(
+      `${urlBase}/put/user/${id}/role/${selectedRole}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    if (response.ok) {
+      return await response.json();
+    }
+    throw await response.json();
+  } catch (error) {}
+};

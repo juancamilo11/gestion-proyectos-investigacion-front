@@ -25,7 +25,7 @@ const ProjectAdministrationConsole = () => {
       setProjectList(allProjects);
       setProjectListToShow(allProjects);
     });
-  });
+  }, []);
 
   return (
     <div>

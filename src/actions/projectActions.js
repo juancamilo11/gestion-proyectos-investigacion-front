@@ -90,19 +90,6 @@ export const fetchResearchInfoByEmail = async (newUserEmail) => {
   }
 };
 
-export const startFetchAllPeople = async () => {
-  try {
-    const response = await fetch(`${urlBase}/get/users`);
-
-    if (response.ok) {
-      return await response.json();
-    }
-    throw await response.json();
-  } catch (error) {
-    sweetAlertForRequestResponseError();
-  }
-};
-
 export const startFetchAllEnrolledResearchersInProject = async (projectId) => {
   try {
     const response = await fetch(`${urlBase}/get/users/${projectId}`);
@@ -145,9 +132,35 @@ export const startFetchAllProjects = async () => {
   }
 };
 
+export const startFetchAllPeople = async () => {
+  try {
+    const response = await fetch(`${urlBase}/get/users`);
+    if (response.ok) {
+      return await response.json();
+    }
+    throw await response.json();
+  } catch (error) {
+    sweetAlertForRequestResponseError();
+  }
+};
+
 export const startDeleteResearchProjectById = async (projectId) => {
   try {
     const response = await fetch(`${urlBase}/delete/project/${projectId}`, {
+      method: "DELETE",
+    });
+    if (response.ok) {
+      return await response.json();
+    }
+    throw await response.json();
+  } catch (error) {
+    sweetAlertForRequestResponseError();
+  }
+};
+
+export const startDeleteUserById = async (userId) => {
+  try {
+    const response = await fetch(`${urlBase}/delete/user/${userId}`, {
       method: "DELETE",
     });
     if (response.ok) {

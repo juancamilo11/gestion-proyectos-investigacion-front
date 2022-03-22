@@ -3,12 +3,12 @@ import { useNavigate } from "react-router-dom";
 import ErrorFlag from "../../../components/ui/ErrorFlag";
 import PersonInfoItem from "./PersonInfoItem";
 
-const PeopleInfoList = ({ peopleList, setPeopleList }) => {
+const PeopleInfoList = ({ peopleListToShow, setPeopleList }) => {
   return (
     <div className="project-form__researcher-list-container">
       <div>
         <h3>
-          {peopleList.length === 0 && (
+          {peopleListToShow.length === 0 && (
             <ErrorFlag
               message="Aún no hay personas registradas en la aplicación"
               color="#f54d4d"
@@ -18,16 +18,23 @@ const PeopleInfoList = ({ peopleList, setPeopleList }) => {
           )}
         </h3>
       </div>
+      <p>LAdministrador de plataforma</p>
+      <hr />
+      {peopleListToShow
+        .filter((researcher) => researcher.role === "ADMINISTRATOR")
+        .map((researcher) => (
+          <PersonInfoItem {...researcher} setPeopleList={setPeopleList} />
+        ))}
       <p>Líderes de Investigación</p>
       <hr />
-      {peopleList
+      {peopleListToShow
         .filter((researcher) => researcher.role === "RESEARCH_LEADER")
         .map((researcher) => (
           <PersonInfoItem {...researcher} setPeopleList={setPeopleList} />
         ))}
       <p>Investigadores</p>
       <hr />
-      {peopleList
+      {peopleListToShow
         .filter((researcher) => researcher.role === "RESEARCHER")
         .map((researcher) => (
           <PersonInfoItem {...researcher} setPeopleList={setPeopleList} />

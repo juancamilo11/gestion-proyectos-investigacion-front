@@ -22,7 +22,7 @@ const ProjectInfoItem = ({
       (res) => {
         if (res.isConfirmed) {
           startDeleteResearchProjectById(projectId).then((res) => {
-            navigate("/");
+            navigate("/user-administration");
           });
         }
       }

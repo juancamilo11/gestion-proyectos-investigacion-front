@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { startDeleteUserById } from "../../../actions/projectActions";
 import {
   sweetAlertForChangeRoleToUser,
   sweetAlertForDeleteAPersonFromApplication,
@@ -7,26 +9,24 @@ import {
 import { appRoles } from "../../../helpers/user-info/userRoles";
 
 const PersonInfoItem = ({
-  id,
-  displayName,
-  email,
-  photoURL,
+  basicResearcherInfo,
   phoneNumber,
   dateOfEntry,
   role,
   career,
   setPeopleList,
 }) => {
+  const navigate = useNavigate();
+  const { id, displayName, email, photoURL } = basicResearcherInfo;
   const [newRole, setNewRole] = useState(role);
   const handleDeletePersonFromApplication = (e) => {
     e.preventDefault();
     sweetAlertForDeleteAPersonFromApplication(displayName, photoURL).then(
       (res) => {
         if (res.isConfirmed) {
-          //FALTA ELIMINAR AQUÍ LA PERSONA, ENVIAR PETICIÓN AL BACK
-          setPeopleList((peopleList) =>
-            peopleList.filter((person) => person.id !== id)
-          );
+          startDeleteUserById(id).then((res) => {
+            navigate("/");
+          });
         }
       }
     );
@@ -90,14 +90,16 @@ const PersonInfoItem = ({
               <option value={role.value}>{role.label}</option>
             ))}
         </select>
-        <div className="project-form-specific-objective-info admin-console__delete-btn">
-          <button
-            className="project-form__delete-specific-objective"
-            onClick={handleDeletePersonFromApplication}
-          >
-            <i className="fas fa-trash-alt "></i>
-          </button>
-        </div>
+        {role !== "ADMINISTRATOR" && (
+          <div className="project-form-specific-objective-info admin-console__delete-btn">
+            <button
+              className="project-form__delete-specific-objective"
+              onClick={handleDeletePersonFromApplication}
+            >
+              <i className="fas fa-trash-alt "></i>
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

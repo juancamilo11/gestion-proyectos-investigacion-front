@@ -8,7 +8,10 @@ import {
   sweetAlertForInvalidUserEmail,
   sweetAlertForRequestResponseError,
 } from "../helpers/sweet-alert/sweetAlertBuilder";
-import { startFetchProjectsByResearcherId } from "./projectActions";
+import {
+  projectsLogoutCleaning,
+  startFetchProjectsByResearcherId,
+} from "./projectActions";
 const auth = getAuth();
 const provider = new GoogleAuthProvider();
 
@@ -102,6 +105,7 @@ export const startGoogleLogout = () => {
   return async (dispatch) => {
     await auth.signOut().then(() => {
       dispatch(logout());
+      // dispatch(projectsLogoutCleaning());
     });
   };
 };

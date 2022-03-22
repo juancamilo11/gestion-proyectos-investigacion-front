@@ -66,7 +66,14 @@ export const ProjectsReducer = (state = initialState, action) => {
       };
 
     case types.projectsLogoutCleaning:
-      return { ...state, activeProject: null, projectsList: [] };
+      return {
+        ...state,
+        activeProjectToShow: null,
+        activeProjectToUpdate: null,
+        activeSearchPanel: false,
+        activeEmptyFormForNewProject: false,
+        projectsList: [],
+      };
 
     case types.deleteProject:
       return {

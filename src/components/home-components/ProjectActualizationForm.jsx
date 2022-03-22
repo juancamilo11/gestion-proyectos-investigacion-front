@@ -23,6 +23,7 @@ import {
 import {
   sweetAlertForFormSubmitWithErrors,
   sweetAlertForInvalidEmailInput,
+  sweetAlertForInvalidRoleInProject,
   sweetAlertForResearcherEmailAlreadyDefined,
   sweetAlertForSpecificObjectiveAlreadyDefined,
 } from "../../helpers/sweet-alert/sweetAlertBuilder";
@@ -135,10 +136,14 @@ const ProjectActualizationForm = () => {
     }
     fetchResearchInfoByEmail(newEmail)
       .then((newResearcherInfo) => {
-        setResearcherList((researcherList) => [
-          ...researcherList,
-          newResearcherInfo,
-        ]);
+        if (newResearcherInfo.role === "RESEARCHER") {
+          setResearcherList((researcherList) => [
+            ...researcherList,
+            newResearcherInfo,
+          ]);
+        } else {
+          sweetAlertForInvalidRoleInProject(newEmail);
+        }
         handleInputChange(cleanEvent);
       })
       .catch((err) => {

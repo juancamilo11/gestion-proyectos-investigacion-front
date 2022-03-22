@@ -31,7 +31,7 @@ export const sweetAlertForDeleteAResearchFromAProject = async (
     title: "Eliminación de un investigador",
     html: `¿Realmente desea eliminar el investigador <b>${displayName}</b> del proyecto de investigación?`,
     footer: `<small><b>Esta acción no se puede deshacer</b></small>`,
-    imageUrl: { photoURL },
+    imageUrl: `${photoURL}`,
     showConfirmButton: true,
     showDenyButton: false,
     showCancelButton: true,
@@ -45,14 +45,21 @@ export const sweetAlertForDeleteAResearchFromAProject = async (
 
 export const sweetAlertForDeleteAPersonFromApplication = async (
   displayName,
-  photoURL
+  photoURL,
+  role
 ) =>
   Swal.fire({
     icon: "warning",
-    title: "Eliminación de una persona de la aplicación",
+    title: `Eliminación de un ${
+      role === "RESEARCH_LEADER" ? "Líder de investigación" : "Investigador"
+    } de la aplicación`,
     html: `¿Realmente desea eliminar a <b>${displayName}</b> de la aplicación?`,
-    footer: `<h4><b>Se eliminará de todos los proyectos en los que está matriculado</b></h4>`,
-    imageUrl: { photoURL },
+    footer: `<h4><b>${
+      role === "RESEARCH_LEADER"
+        ? "Se eliminará junto con TODOS los proyectos que está liderando actualmente."
+        : "Se eliminará de TODOS los proyectos en los que está matriculado"
+    }</b></h4>`,
+    imageUrl: `${photoURL}`,
     showConfirmButton: true,
     showDenyButton: false,
     showCancelButton: true,
@@ -165,6 +172,17 @@ export const sweetAlertForResearcherEmailAlreadyDefined = (newEmail) =>
   Swal.fire({
     icon: "error",
     html: `El email <b>${newEmail}</b> corresponde al email de un investigador que ya está matriculado en este proyecto de investigación.`,
+    showCancelButton: false,
+    showConfirmButton: false,
+    allowEscapeKey: true,
+    allowOutsideClick: true,
+    timer: 5000,
+  });
+
+export const sweetAlertForInvalidRoleInProject = (newEmail) =>
+  Swal.fire({
+    icon: "error",
+    html: `El email <b>${newEmail}</b> corresponde a un usuario con rol diferente al de investigador, recuerde que un proyecto de investigación sólo puede tener un Líder de Investigación.`,
     showCancelButton: false,
     showConfirmButton: false,
     allowEscapeKey: true,

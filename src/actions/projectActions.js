@@ -49,6 +49,11 @@ export const loadProjects = (projects) => ({
   payload: projects,
 });
 
+export const projectsLogoutCleaning = () => ({
+  type: types.projectsLogoutCleaning,
+  payload: null,
+});
+
 export const startFetchProjectsByResearcherId = (researcherId) => {
   return async (dispatch) => {
     try {
@@ -60,9 +65,7 @@ export const startFetchProjectsByResearcherId = (researcherId) => {
         dispatch(loadProjects(projectsList));
       }
       throw await response.json();
-    } catch (error) {
-      sweetAlertForRequestResponseError();
-    }
+    } catch (error) {}
   };
 };
 
@@ -73,9 +76,7 @@ export const startFetchAllResearchersByProjectId = async (projectId) => {
       return await response.json();
     }
     throw await response.json();
-  } catch (error) {
-    sweetAlertForRequestResponseError();
-  }
+  } catch (error) {}
 };
 
 export const fetchResearchInfoByEmail = async (newUserEmail) => {
@@ -85,9 +86,7 @@ export const fetchResearchInfoByEmail = async (newUserEmail) => {
       return await response.json();
     }
     throw await response.json();
-  } catch (error) {
-    sweetAlertForRequestResponseError();
-  }
+  } catch (error) {}
 };
 
 export const startFetchAllEnrolledResearchersInProject = async (projectId) => {
@@ -97,9 +96,7 @@ export const startFetchAllEnrolledResearchersInProject = async (projectId) => {
       return await response.json();
     }
     throw await response.json();
-  } catch (error) {
-    sweetAlertForRequestResponseError();
-  }
+  } catch (error) {}
 };
 
 export const startPostNewResearchProject = async (researchProject) => {
@@ -115,9 +112,7 @@ export const startPostNewResearchProject = async (researchProject) => {
       return await response.json();
     }
     throw await response.json();
-  } catch (error) {
-    sweetAlertForRequestResponseError();
-  }
+  } catch (error) {}
 };
 
 export const startFetchAllProjects = async () => {
@@ -127,9 +122,7 @@ export const startFetchAllProjects = async () => {
       return await response.json();
     }
     throw await response.json();
-  } catch (error) {
-    sweetAlertForRequestResponseError();
-  }
+  } catch (error) {}
 };
 
 export const startFetchAllPeople = async () => {
@@ -139,9 +132,7 @@ export const startFetchAllPeople = async () => {
       return await response.json();
     }
     throw await response.json();
-  } catch (error) {
-    sweetAlertForRequestResponseError();
-  }
+  } catch (error) {}
 };
 
 export const startDeleteResearchProjectById = async (projectId) => {
@@ -153,9 +144,7 @@ export const startDeleteResearchProjectById = async (projectId) => {
       return await response.json();
     }
     throw await response.json();
-  } catch (error) {
-    sweetAlertForRequestResponseError();
-  }
+  } catch (error) {}
 };
 
 export const startDeleteUserById = async (userId) => {
@@ -167,7 +156,5 @@ export const startDeleteUserById = async (userId) => {
       return await response.json();
     }
     throw await response.json();
-  } catch (error) {
-    sweetAlertForRequestResponseError();
-  }
+  } catch (error) {}
 };

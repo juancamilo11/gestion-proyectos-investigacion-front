@@ -21,7 +21,7 @@ const PersonInfoItem = ({
   const [newRole, setNewRole] = useState(role);
   const handleDeletePersonFromApplication = (e) => {
     e.preventDefault();
-    sweetAlertForDeleteAPersonFromApplication(displayName, photoURL).then(
+    sweetAlertForDeleteAPersonFromApplication(displayName, photoURL, role).then(
       (res) => {
         if (res.isConfirmed) {
           startDeleteUserById(id).then((res) => {
@@ -75,21 +75,25 @@ const PersonInfoItem = ({
           <p>{dateOfEntry}</p>
         </div>
 
-        <small className="project-form__researcher-role">
-          {role === "RESEARCH_LEADER" ? "Líder Investigador" : "Investigador"}
+        <small className="project-form__researcher-role admin-console__role">
+          {role === "RESEARCHER" && "Líder Investigador"}
+          {role === "RESEARCH_LEADER" && "Líder Investigador"}
+          {role === "ADMINISTRATOR" && "Líder Administrador"}
         </small>
 
-        <select
-          value={newRole}
-          onChange={handleRoleChange}
-          className="admin-console__role-select"
-        >
-          {appRoles
-            .filter((role) => role.value !== "ADMINISTRATOR")
-            .map((role) => (
-              <option value={role.value}>{role.label}</option>
-            ))}
-        </select>
+        {role !== "ADMINISTRATOR" && (
+          <select
+            value={newRole}
+            onChange={handleRoleChange}
+            className="admin-console__role-select"
+          >
+            {appRoles
+              .filter((role) => role.value !== "ADMINISTRATOR")
+              .map((role) => (
+                <option value={role.value}>{role.label}</option>
+              ))}
+          </select>
+        )}
         {role !== "ADMINISTRATOR" && (
           <div className="project-form-specific-objective-info admin-console__delete-btn">
             <button

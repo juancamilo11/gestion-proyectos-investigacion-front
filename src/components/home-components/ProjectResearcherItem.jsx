@@ -41,7 +41,7 @@ const ProjectResearcherItem = ({
         </p>
         <p>{basicResearcherInfo.email}</p>
         <p>
-          {career.name} - {career.code}
+          {career?.name} - {career?.code}
         </p>
         <p className="project-form__researcher-role">
           {role === "RESEARCH_LEADER" ? "Líder Investigador" : "Investigador"}

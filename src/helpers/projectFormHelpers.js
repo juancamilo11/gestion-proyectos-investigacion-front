@@ -4,15 +4,15 @@ const getCurrentDate = () => new Date().toISOString().split("T")[0];
 
 export const formInitialValues = {
   projectId: uuidv4(),
-  name: "",
-  budget: "",
-  generalObjective: "",
+  name: "Nombre de prueba",
+  budget: "2500000",
+  generalObjective: "General objetive de prueba",
   startingDate: getCurrentDate(),
   endingDate: getCurrentDate(),
-  description: "",
+  description: "Descripción de pruebaaaaa",
 
-  currentEmail: "",
-  currentSpecificObjective: "",
+  currentEmail: "juan.cardona69@udea.edu.co",
+  currentSpecificObjective: "Objetivo específico actual",
 };
 
 export const getInitialFormValuesForUpdating = (activeMemoryToUpdate) => ({

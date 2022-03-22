@@ -231,13 +231,17 @@ const validateProjectDescription = (description, setErrorsState) => {
 export const isTheSpecificObjectiveAlreadyDefined = (
   newObjective,
   specificObjectives
-) => {
-  return specificObjectives
+) =>
+  specificObjectives
     .map((specificObjective) => specificObjective.description.toLowerCase())
     .includes(newObjective.toLowerCase());
-};
 
 export const validateNewResearcherEmail = (email) =>
   validator.isEmail(email) && validateEmail(email);
+
+export const isTheResearcherEmailAlreadyDefined = (newEmail, emailList) =>
+  emailList
+    .map((email) => email.toLowerCase())
+    .includes(newEmail.toLowerCase());
 
 export default projectFormValidation;

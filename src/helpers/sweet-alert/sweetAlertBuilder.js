@@ -180,3 +180,14 @@ export const sweetAlertForInvalidEmailInput = (newEmail) =>
     allowOutsideClick: true,
     timer: 5000,
   });
+
+export const sweetAlertForResearcherEmailAlreadyDefined = (newEmail) =>
+  Swal.fire({
+    icon: "error",
+    html: `El email <b>${newEmail}</b> corresponde al email de un investigador que ya está matriculado en este proyecto de investigación.`,
+    showCancelButton: false,
+    showConfirmButton: false,
+    allowEscapeKey: true,
+    allowOutsideClick: true,
+    timer: 5000,
+  });

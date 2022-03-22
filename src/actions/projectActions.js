@@ -81,14 +81,16 @@ export const startFetchAllResearchersByProjectId = async (projectId) => {
 export const fetchResearchInfoByEmail = async (newUserEmail) => {
   try {
     const response = {
-      id: uuidv4(),
-      displayName: "Random name" + parseInt(Math.random() * 100),
-      email: "pedrito.perez@udea.edu.co",
-      photoURL:
-        "https://i.pinimg.com/originals/ae/8a/c2/ae8ac2fa217d23aadcc913989fcc34a2.png",
+      basicResearcherInfo: {
+        id: uuidv4(),
+        displayName: "Random name" + parseInt(Math.random() * 100),
+        email: newUserEmail,
+        photoURL:
+          "https://i.pinimg.com/originals/ae/8a/c2/ae8ac2fa217d23aadcc913989fcc34a2.png",
+      },
       phoneNumber: "3122555499",
       dateOfEntry: "2020-05-10",
-      role: "RESEARCH_LEADER",
+      role: "RESEARCHER",
       career: {
         name: "Ing. Química",
         code: "513",

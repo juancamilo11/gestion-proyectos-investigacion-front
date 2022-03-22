@@ -5,6 +5,7 @@ import {
   startFetchAllResearchersByProjectId,
 } from "../../actions/projectActions";
 import projectFormValidation, {
+  isTheResearcherEmailAlreadyDefined,
   isTheSpecificObjectiveAlreadyDefined,
   validateNewResearcherEmail,
 } from "../../helpers/projectForm/formValidationHelpers";
@@ -15,6 +16,7 @@ import {
 } from "../../helpers/projectFormHelpers";
 import {
   sweetAlertForInvalidEmailInput,
+  sweetAlertForResearcherEmailAlreadyDefined,
   sweetAlertForSpecificObjectiveAlreadyDefined,
 } from "../../helpers/sweet-alert/sweetAlertBuilder";
 import useForm from "../../hooks/useForm";
@@ -32,6 +34,7 @@ const ProjectActualizationForm = () => {
   const { activeProjectToUpdate } = useSelector((state) => state.projects);
   const [specificObjectives, setSpecificObjectives] = useState([]);
   const [researcherList, setResearcherList] = useState([]);
+  const [formSubmitHasErrors, setFormSubmitHasErrors] = useState(false);
 
   const {
     projectId,
@@ -84,6 +87,9 @@ const ProjectActualizationForm = () => {
     handleInputChange(cleanEvent);
   };
 
+  const getEmailListOfEnrolledResearchers = () =>
+    researcherList.map((researcher) => researcher.basicResearcherInfo.email);
+
   const handleAddNewResearcherByEmail = (e) => {
     e.preventDefault();
     const newEmail = document.getElementById("currentEmail").value.trim();
@@ -95,13 +101,26 @@ const ProjectActualizationForm = () => {
       sweetAlertForInvalidEmailInput(newEmail);
       return;
     }
-    newEmail.then((newResearcherInfo) => {
-      setResearcherList((researcherList) => [
-        newResearcherInfo,
-        ...researcherList,
-      ]);
-      handleInputChange(cleanEvent);
-    });
+    if (
+      isTheResearcherEmailAlreadyDefined(
+        newEmail,
+        getEmailListOfEnrolledResearchers()
+      )
+    ) {
+      sweetAlertForResearcherEmailAlreadyDefined(newEmail);
+      return;
+    }
+    fetchResearchInfoByEmail(newEmail)
+      .then((newResearcherInfo) => {
+        setResearcherList((researcherList) => [
+          newResearcherInfo,
+          ...researcherList,
+        ]);
+        handleInputChange(cleanEvent);
+      })
+      .catch((err) => {
+        handleInputChange(cleanEvent);
+      });
   };
 
   const handleInputValidation = (e) => {

@@ -44,7 +44,7 @@ const fetchAllUserProjects = (allUserProjects) => ({
   payload: allUserProjects,
 });
 
-const loadProjects = (projects) => ({
+export const loadProjects = (projects) => ({
   type: types.loadProjects,
   payload: projects,
 });
@@ -125,6 +125,24 @@ export const startFetchAllPeople = async () => {
 export const startFetchAllEnrolledResearchersInProject = async (projectId) => {
   try {
     const response = await fetch(`${urlBase}/get/users/${projectId}`);
+    if (response.ok) {
+      return await response.json();
+    }
+    throw await response.json();
+  } catch (error) {
+    sweetAlertForRequestResponseError();
+  }
+};
+
+export const startPostNewResearchProject = async (researchProject) => {
+  try {
+    const response = await fetch(`${urlBase}/post/project`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(researchProject),
+    });
     if (response.ok) {
       return await response.json();
     }

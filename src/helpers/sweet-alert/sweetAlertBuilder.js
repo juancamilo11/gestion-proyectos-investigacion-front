@@ -191,3 +191,14 @@ export const sweetAlertForResearcherEmailAlreadyDefined = (newEmail) =>
     allowOutsideClick: true,
     timer: 5000,
   });
+
+export const sweetAlertForFormSubmitWithErrors = () =>
+  Swal.fire({
+    icon: "error",
+    html: `El formulario tiene errores, intenta resolver estos errores e intenta nuevamente.`,
+    showCancelButton: false,
+    showConfirmButton: false,
+    allowEscapeKey: true,
+    allowOutsideClick: true,
+    timer: 5000,
+  });

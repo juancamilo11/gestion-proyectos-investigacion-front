@@ -11,7 +11,7 @@ export const formInitialValues = {
   endingDate: getCurrentDate(),
   description: "Descripción de pruebaaaaa",
 
-  currentEmail: "juan.cardona69@udea.edu.co",
+  currentEmail: "juan.cardona69@gmail.com",
   currentSpecificObjective: "Objetivo específico actual",
 };
 

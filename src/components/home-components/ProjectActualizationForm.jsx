@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  activeProjectToShow,
   fetchResearchInfoByEmail,
+  loadProjects,
   startFetchAllResearchersByProjectId,
+  startPostNewResearchProject,
 } from "../../actions/projectActions";
+import buildResearchProject from "../../helpers/projectForm/formSubmitHelpers";
 import projectFormValidation, {
   isTheResearcherEmailAlreadyDefined,
   isTheSpecificObjectiveAlreadyDefined,
@@ -15,6 +19,7 @@ import {
   getInitialFormValuesForUpdating,
 } from "../../helpers/projectFormHelpers";
 import {
+  sweetAlertForFormSubmitWithErrors,
   sweetAlertForInvalidEmailInput,
   sweetAlertForResearcherEmailAlreadyDefined,
   sweetAlertForSpecificObjectiveAlreadyDefined,
@@ -34,7 +39,6 @@ const ProjectActualizationForm = () => {
   const { activeProjectToUpdate } = useSelector((state) => state.projects);
   const [specificObjectives, setSpecificObjectives] = useState([]);
   const [researcherList, setResearcherList] = useState([]);
-  const [formSubmitHasErrors, setFormSubmitHasErrors] = useState(false);
 
   const {
     projectId,
@@ -51,7 +55,7 @@ const ProjectActualizationForm = () => {
 
   const handleProjectFormSubmit = (e) => {
     e.preventDefault();
-    projectFormValidation(
+    const areTheFormValuesCorrect = projectFormValidation(
       {
         projectId,
         name,
@@ -63,6 +67,40 @@ const ProjectActualizationForm = () => {
       },
       setErrorsState
     );
+    if (!areTheFormValuesCorrect) {
+      sweetAlertForFormSubmitWithErrors();
+      return;
+    }
+    const researchProjectObject = buildResearchProject(
+      formValues,
+      specificObjectives,
+      researcherList
+    );
+    console.log(JSON.stringify(researchProjectObject));
+    startPostNewResearchProject(researchProjectObject).then((projectResult) => {
+      const {
+        projectId,
+        name,
+        budget,
+        projectObjective: objective,
+        projectDuration: duration,
+        description,
+        researcherIdList,
+      } = projectResult;
+
+      dispatch(
+        activeProjectToShow(projectId, {
+          projectId,
+          name,
+          budget,
+          objective,
+          duration,
+          description,
+          researcherIdList,
+        })
+      );
+      dispatch(loadProjects([projectResult, ...projectsList]));
+    });
   };
 
   const handleAddNewSpecificObjective = (e) => {
@@ -129,7 +167,6 @@ const ProjectActualizationForm = () => {
 
   useEffect(() => {
     if (activeProjectToUpdate) {
-      console.log(activeProjectToUpdate);
       resetForm(getInitialFormValuesForUpdating(activeProjectToUpdate));
       setSpecificObjectives(
         activeProjectToUpdate.objective.specificObjectiveList

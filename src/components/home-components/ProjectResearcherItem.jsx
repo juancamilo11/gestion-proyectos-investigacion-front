@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { createRoutesFromChildren } from "react-router-dom";
 import { sweetAlertForDeleteAResearchFromAProject } from "../../helpers/sweet-alert/sweetAlertBuilder";
 
@@ -10,6 +11,8 @@ const ProjectResearcherItem = ({
   career,
   setResearcherList,
 }) => {
+  const { auth } = useSelector((state) => state);
+
   const handleDeleteResearcher = (e) => {
     e.preventDefault();
     sweetAlertForDeleteAResearchFromAProject(
@@ -45,12 +48,14 @@ const ProjectResearcherItem = ({
         </p>
 
         <div className="project-form-specific-objective-info">
-          <button
-            className="project-form__delete-specific-objective"
-            onClick={handleDeleteResearcher}
-          >
-            <i className="fas fa-trash-alt "></i>
-          </button>
+          {auth.uid !== basicResearcherInfo.id && (
+            <button
+              className="project-form__delete-specific-objective"
+              onClick={handleDeleteResearcher}
+            >
+              <i className="fas fa-trash-alt "></i>
+            </button>
+          )}
         </div>
       </div>
     </div>

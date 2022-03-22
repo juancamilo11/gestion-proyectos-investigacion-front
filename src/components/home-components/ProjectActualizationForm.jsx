@@ -151,8 +151,8 @@ const ProjectActualizationForm = () => {
     fetchResearchInfoByEmail(newEmail)
       .then((newResearcherInfo) => {
         setResearcherList((researcherList) => [
-          newResearcherInfo,
           ...researcherList,
+          newResearcherInfo,
         ]);
         handleInputChange(cleanEvent);
       })
@@ -175,6 +175,19 @@ const ProjectActualizationForm = () => {
     } else {
       resetForm(formInitialValues);
       setSpecificObjectives([]);
+      const creatorInfo = {
+        basicResearcherInfo: {
+          id: auth.uid,
+          displayName: auth.name,
+          email: auth.email,
+          photoURL: auth.photoURL,
+        },
+        phoneNumber: auth.phoneNumber,
+        role: auth.role,
+        career: auth.career,
+        dateOfEntry: auth.dateOfEntry,
+      };
+      setResearcherList([creatorInfo]);
     }
   }, [activeProjectToUpdate]);
 

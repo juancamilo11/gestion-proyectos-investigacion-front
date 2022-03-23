@@ -126,7 +126,7 @@ export const sweetAlertForDisplayProjectObjectives = (name, objective) =>
     title: "Lista de objetivos específicos del proyecto " + name,
     text: "hola",
     html: `<div>
-        ${objective.specificObjectives.map(
+        ${objective.specificObjectiveList.map(
           (specificObjective) =>
             `
               ${specificObjective.description}

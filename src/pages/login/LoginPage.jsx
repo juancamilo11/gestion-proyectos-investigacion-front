@@ -42,6 +42,9 @@ const LoginPage = () => {
               Ingresar con Google
             </span>
           </button>
+          <div className="authors__container">
+            Desarrollado por: <b>CodeRiders</b>
+          </div>
         </div>
       </div>
       <div

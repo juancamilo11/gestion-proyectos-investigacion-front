@@ -59,7 +59,7 @@ const validateProjectName = (name, setErrorsState) => {
 };
 
 const validateProjectBudget = (budget, setErrorsState) => {
-  if (parseFloat(budget) <= 0) {
+  if (parseFloat(budget) <= 0 || budget === "" || isNaN(parseFloat(budget))) {
     setErrorStateForField(
       setErrorsState,
       "budget",

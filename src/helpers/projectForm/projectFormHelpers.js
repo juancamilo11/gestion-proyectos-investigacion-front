@@ -2,31 +2,31 @@ import { v4 as uuidv4 } from "uuid";
 
 const getCurrentDate = () => new Date().toISOString().split("T")[0];
 
-// export const formInitialValues = {
-//   projectId: uuidv4(),
-//   name: "",
-//   budget: "",
-//   generalObjective: "",
-//   startingDate: getCurrentDate(),
-//   endingDate: getCurrentDate(),
-//   description: "",
-
-//   currentEmail: "",
-//   currentSpecificObjective: "",
-// };
-
 export const formInitialValues = {
   projectId: uuidv4(),
-  name: "Nombre de prueba",
-  budget: "2500000",
-  generalObjective: "General objetive de prueba",
-  startingDate: "2023-03-05",
-  endingDate: "2025-05-10",
-  description: "Descripción de pruebaaaaa",
+  name: "",
+  budget: "",
+  generalObjective: "",
+  startingDate: getCurrentDate(),
+  endingDate: getCurrentDate(),
+  description: "",
 
-  currentEmail: "juancamilo19997814@gmail.com",
-  currentSpecificObjective: "Objetivo específico actual",
+  currentEmail: "",
+  currentSpecificObjective: "",
 };
+
+// export const formInitialValues = {
+//   projectId: uuidv4(),
+//   name: "Nombre de prueba",
+//   budget: "2500000",
+//   generalObjective: "General objetive de prueba",
+//   startingDate: "2023-03-05",
+//   endingDate: "2025-05-10",
+//   description: "Descripción de prueba",
+
+//   currentEmail: "juancamilo19997814@gmail.com",
+//   currentSpecificObjective: "Objetivo específico actual",
+// };
 
 export const getInitialFormValuesForUpdating = (activeMemoryToUpdate) => ({
   projectId: activeMemoryToUpdate.projectId,

@@ -9,8 +9,7 @@ const ProjectSpecificObjectiveListReadOnly = ({ specificObjectives }) => {
         <div>
           {specificObjectives.length === 0 ? (
             <ErrorFlag
-              message="Este proyecto aún no tiene objetivos específicos ingresados.
-              uno"
+              message="Este proyecto aún no tiene objetivos específicos ingresados."
               color="#f54d4d"
               fontColor="white"
               width="95%"

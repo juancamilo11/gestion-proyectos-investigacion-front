@@ -1,6 +1,7 @@
 import moment from "moment";
 import validator from "validator";
 import { validateEmail } from "../login/emailDomainValidator";
+import { getCareerByCode } from "./udeaCareers";
 
 const userFormValidation = (
   { phoneNumber, dateOfEntry, careerCode },
@@ -20,14 +21,11 @@ const validateFormValues = (
   careerCode,
   setErrorsState
 ) => {
-  return false;
-  // validateProjectName(name, setErrorsState) &&
-  // validateProjectDescription(description, setErrorsState) &&
-  // validateProjectBudget(budget, setErrorsState) &&
-  // validateProjectGeneralObjective(generalObjective, setErrorsState) &&
-  // validateProjectStartingDate(startingDate, setErrorsState) &&
-  // validateProjectEndingDate(endingDate, setErrorsState) &&
-  // validateProjectDates(startingDate, endingDate, setErrorsState)
+  return (
+    validatePhoneNumber(phoneNumber, setErrorsState) &&
+    validateDateOfEntry(dateOfEntry, setErrorsState) &&
+    validateCareerCode(careerCode, setErrorsState)
+  );
 };
 
 const setErrorStateForField = (
@@ -47,204 +45,51 @@ const setErrorStateForField = (
   });
 };
 
-const validateProjectName = (name, setErrorsState) => {
-  if (name.trim().length < 5 || name.trim().length > 60) {
+const validatePhoneNumber = (phoneNumber, setErrorsState) => {
+  const cellphoneRegex = new RegExp(
+    "^(\\+\\d{1,3}( )?)?((\\(\\d{3}\\))|\\d{3})[- .]?\\d{3}[- .]?\\d{4}$"
+  );
+  if (!cellphoneRegex.test(phoneNumber)) {
     setErrorStateForField(
       setErrorsState,
-      "name",
+      "phoneNumber",
       true,
-      "Error, el nombre del proyecto debe tener entre 5 y 60 caracteres"
+      "Error, el valor no corresponde a un número de teléfono"
     );
     return false;
   }
-  setErrorStateForField(setErrorsState, "name", false, "");
+  setErrorStateForField(setErrorsState, "phoneNumber", false, "");
   return true;
 };
 
-const validateProjectBudget = (budget, setErrorsState) => {
-  if (parseFloat(budget) <= 0) {
+const validateCareerCode = (careerCode, setErrorsState) => {
+  if (getCareerByCode(careerCode) === null || careerCode === undefined) {
     setErrorStateForField(
       setErrorsState,
-      "budget",
+      "careerCode",
       true,
-      "Error, el presupuesto asignado para el proyecto debe ser mayor a cero COP"
+      "Error, no ha seleccionado ninguna carrera"
     );
     return false;
   }
-  setErrorStateForField(setErrorsState, "budget", false, "");
+  setErrorStateForField(setErrorsState, "careerCode", false, "");
   return true;
 };
 
-const validateProjectGeneralObjective = (generalObjective, setErrorsState) => {
-  if (
-    generalObjective.trim().length < 5 ||
-    generalObjective.trim().length > 60
-  ) {
-    setErrorStateForField(
-      setErrorsState,
-      "generalObjective",
-      true,
-      "Error, el objetivo general del proyecto debe tener entre 5 y 60 caracteres"
-    );
-    return false;
-  }
-  setErrorStateForField(setErrorsState, "generalObjective", false, "");
-  return true;
-};
-
-const validateProjectStartingDate = (startingDate, setErrorsState) => {
-  const theStartingDate = moment(startingDate);
+const validateDateOfEntry = (dateOfEntry, setErrorsState) => {
+  const theDateOfEntry = moment(dateOfEntry);
   const now = moment();
-  if (theStartingDate.isBefore(now)) {
-    setErrorsState((state) => {
-      const endingDate = state.duration.endingDate;
-      return {
-        ...state,
-        duration: {
-          endingDate,
-          startingDate: {
-            hasErrors: true,
-            message:
-              "Error, La fecha de inicio del proyecto debe estar en el futuro.",
-          },
-        },
-      };
-    });
-    return false;
-  }
-  setErrorsState((state) => {
-    const endingDate = state.duration.endingDate;
-    return {
-      ...state,
-      duration: {
-        endingDate,
-        startingDate: {
-          hasErrors: false,
-          message: "",
-        },
-      },
-    };
-  });
-  return true;
-};
-
-const validateProjectEndingDate = (endingDate, setErrorsState) => {
-  const theEndingDate = moment(endingDate);
-  const now = moment();
-  if (theEndingDate.isBefore(now)) {
-    setErrorsState((state) => {
-      const startingDate = state.duration.startingDate;
-      return {
-        ...state,
-        duration: {
-          startingDate,
-          endingDate: {
-            hasErrors: true,
-            message:
-              "Error, La fecha de finalización del proyecto debe estar en el futuro.",
-          },
-        },
-      };
-    });
-    return false;
-  }
-  setErrorsState((state) => {
-    const startingDate = state.duration.startingDate;
-    return {
-      ...state,
-      duration: {
-        startingDate,
-        endingDate: {
-          hasErrors: false,
-          message: "",
-        },
-      },
-    };
-  });
-  return true;
-};
-
-const validateProjectDates = (startingDate, endingDate, setErrorsState) => {
-  const theStartingDate = moment(startingDate);
-  const theEndingDate = moment(endingDate);
-
-  if (theEndingDate.isBefore(theStartingDate)) {
-    setErrorsState((state) => {
-      return {
-        ...state,
-        duration: {
-          startingDate: {
-            hasErrors: true,
-            message:
-              "Error, La fecha de inicio del proyecto debe estar antes que la fecha de finalización.",
-          },
-          endingDate: {
-            hasErrors: true,
-            message:
-              "Error, La fecha de finalización del proyecto debe estar después que la fecha de inicio.",
-          },
-        },
-      };
-    });
-    return false;
-  }
-  setErrorsState((state) => {
-    const endingDate = state.duration.endingDate;
-    return {
-      ...state,
-      duration: {
-        endingDate,
-        startingDate: {
-          hasErrors: false,
-          message: "",
-        },
-      },
-    };
-  });
-  setErrorsState((state) => {
-    const startingDate = state.duration.startingDate;
-    return {
-      ...state,
-      duration: {
-        startingDate,
-        endingDate: {
-          hasErrors: false,
-          message: "",
-        },
-      },
-    };
-  });
-  return true;
-};
-
-const validateProjectDescription = (description, setErrorsState) => {
-  if (description.trim().length < 5 || description.trim().length > 60) {
+  if (theDateOfEntry.isAfter(now)) {
     setErrorStateForField(
       setErrorsState,
-      "description",
+      "dateOfEntry",
       true,
-      "Error, la descripción del proyecto debe tener entre 5 y 60 caracteres"
+      "Error, la fecha de ingreso a la universidad debe estar en el pasado"
     );
     return false;
   }
-  setErrorStateForField(setErrorsState, "description", false, "");
+  setErrorStateForField(setErrorsState, "dateOfEntry", false, "");
   return true;
 };
-
-export const isTheSpecificObjectiveAlreadyDefined = (
-  newObjective,
-  specificObjectives
-) =>
-  specificObjectives
-    .map((specificObjective) => specificObjective.description.toLowerCase())
-    .includes(newObjective.toLowerCase());
-
-export const validateNewResearcherEmail = (email) =>
-  validator.isEmail(email) && validateEmail(email);
-
-export const isTheResearcherEmailAlreadyDefined = (newEmail, emailList) =>
-  emailList
-    .map((email) => email.toLowerCase())
-    .includes(newEmail.toLowerCase());
 
 export default userFormValidation;

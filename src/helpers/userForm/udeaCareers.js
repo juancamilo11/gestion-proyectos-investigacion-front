@@ -6,7 +6,7 @@ export const udeaCareers = [
       { name: "Biología", code: "452" },
       {
         name: "Profesional en Gerente de Sistemas de Información en Salud",
-        code: "3431",
+        code: "34312",
       },
       { name: "Instrumentación Quirúrgica", code: "3275" },
       { name: "Licenciatura en Ciencias Naturales", code: "106513" },
@@ -17,7 +17,7 @@ export const udeaCareers = [
       { name: "Microbiología Industrial y Ambiental", code: "17711" },
       { name: "Microbiología y Bioanálisis", code: "426" },
       { name: "Nutrición y Dietética", code: "429" },
-      { name: "Administracion en salud", code: "106214" },
+      { name: "Administracion en salud", code: "1062142" },
       { name: "Tecnología en Regencia de Farmacia", code: "401" },
     ],
   },
@@ -25,15 +25,15 @@ export const udeaCareers = [
     facultyName: "Administración y Negocios",
     careers: [
       { name: "Administración de Empresas", code: "439" },
-      { name: "Administración en Salud", code: "106214" },
+      { name: "Administración en Salud", code: "1062144" },
       { name: "Contaduría Pública", code: "440" },
-      { name: "Gerencia en Sistemas de Información de Salud", code: "3431" },
+      { name: "Gerencia en Sistemas de Información de Salud", code: "34312" },
     ],
   },
   {
     facultyName: "Ciencias Sociales",
     careers: [
-      { name: "Antropología", code: "431" },
+      { name: "Antropología", code: "4313" },
       { name: "Ciencia Política", code: "17702" },
       { name: "Derecho", code: "437" },
       { name: "Economía", code: "438" },
@@ -126,7 +126,13 @@ export const udeaCareers = [
 ];
 
 export const getCareerByCode = (careerCode) => {
-  return udeaCareers.map((faculty) => {
-    return faculty.careers.filter((career) => career.code === careerCode)[0];
-  });
+  let careerToReturn = null;
+  let value = udeaCareers.map((faculty) => {
+    faculty.careers.map((career) => {
+      if (career.code === careerCode) {
+        careerToReturn = career;
+      }
+    });
+  })[0];
+  return careerToReturn;
 };

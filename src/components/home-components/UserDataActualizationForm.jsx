@@ -56,7 +56,7 @@ const UserDataActualizationForm = () => {
       displayName,
       email,
       photoURL,
-      role,
+      auth.role,
       phoneNumber,
       dateOfEntry,
       careerCode
@@ -194,6 +194,7 @@ const UserDataActualizationForm = () => {
                 value={careerCode}
                 onChange={handleInputValidation}
               >
+                <option value="NN">Seleccione una carrera</option>
                 {udeaCareers.map((faculty) => (
                   <optgroup label={faculty.facultyName}>
                     {faculty.careers.map((career) => (

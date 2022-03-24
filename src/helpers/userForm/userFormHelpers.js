@@ -8,7 +8,7 @@ export const userFormInitialValues = (user) => ({
   role: user.role,
   phoneNumber: user.phoneNumber,
   dateOfEntry: user.dateOfEntry,
-  careerCode: user.careerCode,
+  careerCode: user.career.code,
 });
 
 export const formInitialErrorState = {

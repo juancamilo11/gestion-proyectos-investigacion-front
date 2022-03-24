@@ -6,6 +6,7 @@ const initialState = {
   activeProjectToUpdate: null,
   activeSearchPanel: false,
   activeEmptyFormForNewProject: false,
+  activeFormForUserDataUpdate: null,
 };
 
 export const ProjectsReducer = (state = initialState, action) => {
@@ -19,6 +20,7 @@ export const ProjectsReducer = (state = initialState, action) => {
         activeProjectToUpdate: null,
         activeSearchPanel: false,
         activeEmptyFormForNewProject: false,
+        activeFormForUserDataUpdate: null,
       };
 
     case types.setActiveProjectToUpdate:
@@ -30,6 +32,7 @@ export const ProjectsReducer = (state = initialState, action) => {
         },
         activeSearchPanel: false,
         activeEmptyFormForNewProject: false,
+        activeFormForUserDataUpdate: null,
       };
 
     case types.setActiveSearchPanel:
@@ -39,6 +42,7 @@ export const ProjectsReducer = (state = initialState, action) => {
         activeProjectToUpdate: null,
         activeSearchPanel: true,
         activeEmptyFormForNewProject: false,
+        activeFormForUserDataUpdate: null,
       };
 
     case types.setNothingToShow:
@@ -48,6 +52,7 @@ export const ProjectsReducer = (state = initialState, action) => {
         activeProjectToUpdate: null,
         activeSearchPanel: false,
         activeEmptyFormForNewProject: false,
+        activeFormForUserDataUpdate: null,
       };
 
     case types.setNewProjectForm:
@@ -57,6 +62,17 @@ export const ProjectsReducer = (state = initialState, action) => {
         activeProjectToUpdate: null,
         activeSearchPanel: false,
         activeEmptyFormForNewProject: true,
+        activeFormForUserDataUpdate: null,
+      };
+
+    case types.setActiveUserForm:
+      return {
+        ...state,
+        activeProjectToShow: null,
+        activeProjectToUpdate: null,
+        activeSearchPanel: false,
+        activeEmptyFormForNewProject: false,
+        activeFormForUserDataUpdate: true,
       };
 
     case types.loadProjects:
@@ -72,6 +88,7 @@ export const ProjectsReducer = (state = initialState, action) => {
         activeProjectToUpdate: null,
         activeSearchPanel: false,
         activeEmptyFormForNewProject: false,
+        activeFormForUserDataUpdate: null,
         projectsList: [],
       };
 

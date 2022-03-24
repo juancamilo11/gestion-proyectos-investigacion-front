@@ -1,8 +1,12 @@
 import { urlBase } from "../environments/environment";
 import { v4 as uuidv4 } from "uuid";
-import { sweetAlertForRequestResponseError } from "../helpers/sweet-alert/sweetAlertBuilder";
+import {
+  sweetAlertForRequestResponseError,
+  sweetAlertForUserDataSuccessfullyUpdated,
+} from "../helpers/sweet-alert/sweetAlertBuilder";
 import types from "../types/types";
 import { async } from "@firebase/util";
+import { updateUserInfo } from "./authActions";
 
 export const activeProjectToShow = (projectId, project) => ({
   type: types.setActiveProjectToShow,
@@ -26,6 +30,11 @@ export const activeNothingToShow = () => ({
 
 export const activeNewProject = () => ({
   type: types.setNewProjectForm,
+  payload: null,
+});
+
+export const activeNewUserForm = () => ({
+  type: types.setActiveUserForm,
   payload: null,
 });
 
@@ -175,4 +184,25 @@ export const startChangeUserRole = async (id, selectedRole) => {
     }
     throw await response.json();
   } catch (error) {}
+};
+
+export const startUpdateUserInfo = (userInfo) => {
+  return async (dispatch) => {
+    try {
+      const response = await fetch(`${urlBase}/put/user`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userInfo),
+      });
+      if (response.ok) {
+        const userInfoUpdated = await response.json();
+        dispatch(activeNothingToShow());
+        dispatch(updateUserInfo(userInfoUpdated));
+        sweetAlertForUserDataSuccessfullyUpdated();
+      }
+      throw await response.json();
+    } catch (error) {}
+  };
 };

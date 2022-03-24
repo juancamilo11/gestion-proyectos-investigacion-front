@@ -14,15 +14,18 @@ const HomePage = () => {
   return (
     <div className="project-catalog__main-content">
       <Sidebar />
+
       {projects.activeProjectToShow && <ProjectView />}
       {projects.activeProjectToUpdate && <ProjectActualizationForm />}
       {projects.activeSearchPanel && <UserDataActualizationForm />}
       {projects.activeEmptyFormForNewProject && <ProjectActualizationForm />}
+      {projects.activeFormForUserDataUpdate && <UserDataActualizationForm />}
 
       {!projects.activeProjectToShow &&
         !projects.activeProjectToUpdate &&
         !projects.activeSearchPanel &&
-        !projects.activeEmptyFormForNewProject && <NoProjectSelected />}
+        !projects.activeEmptyFormForNewProject &&
+        !projects.activeFormForUserDataUpdate && <NoProjectSelected />}
     </div>
   );
 };

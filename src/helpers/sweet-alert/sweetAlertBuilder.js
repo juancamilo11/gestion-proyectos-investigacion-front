@@ -200,3 +200,14 @@ export const sweetAlertForFormSubmitWithErrors = () =>
     allowOutsideClick: true,
     timer: 5000,
   });
+
+export const sweetAlertForUserDataSuccessfullyUpdated = () =>
+  Swal.fire({
+    icon: "success",
+    html: `¡Los datos han sido actualizados exitosamente!`,
+    showCancelButton: false,
+    showConfirmButton: true,
+    allowEscapeKey: true,
+    allowOutsideClick: true,
+    timer: 5000,
+  });

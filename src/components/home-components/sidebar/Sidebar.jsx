@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { startGoogleLogout } from "../../../actions/authActions";
+import { activeNewUserForm } from "../../../actions/projectActions";
 import ProjectEntries from "./ProjectEntries";
 
 const Sidebar = () => {
@@ -33,10 +34,18 @@ const Sidebar = () => {
     setFilterValue("");
   };
 
+  const handleUpdateUserInfo = (e) => {
+    e.preventDefault();
+    dispatch(activeNewUserForm());
+  };
+
   return (
     <aside className="project-catalog__sidebar">
       <div className="project-catalog__sidebar-navbar">
-        <div className="project-catalog__sidebar-user-info">
+        <div
+          className="project-catalog__sidebar-user-info"
+          onClick={handleUpdateUserInfo}
+        >
           {auth?.photoURL ? (
             <img
               src={auth.photoURL}

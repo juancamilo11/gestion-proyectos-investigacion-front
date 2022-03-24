@@ -19,7 +19,7 @@ import {
   formInitialErrorState,
   formInitialValues,
   getInitialFormValuesForUpdating,
-} from "../../helpers/projectFormHelpers";
+} from "../../helpers/projectForm/projectFormHelpers";
 import {
   sweetAlertForFormSubmitWithErrors,
   sweetAlertForInvalidEmailInput,

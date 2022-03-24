@@ -17,6 +17,14 @@ const authReducer = (state = initialState, action) => {
         career: action.payload.career,
         researchProjectList: action.payload.researchProjectList,
       };
+    case types.updateUserInfo:
+      return {
+        ...state,
+        phoneNumber: action.payload.phoneNumber,
+        dateOfEntry: action.payload.dateOfEntry,
+        role: action.payload.role,
+        career: action.payload.career,
+      };
     case types.authLogout:
       return {};
     default:

@@ -38,6 +38,11 @@ export const login = (
   },
 });
 
+export const updateUserInfo = (userInfoUpdated) => ({
+  type: types.updateUserInfo,
+  payload: userInfoUpdated,
+});
+
 export const logout = () => ({
   type: types.authLogout,
 });

@@ -54,29 +54,35 @@ const PersonInfoItem = ({
       <div className="project-form__objective-item">
         <img src={photoURL} className="project-form__researcher-photo" />
         <div className="admin-console__user-info-item admin-console__user-name">
-          <small>Nombre Completo</small>
-          <p>{displayName}</p>
+          <small className="project-form__info-value">Nombre Completo</small>
+          <p className="project-form__info-value">{displayName}</p>
         </div>
 
         <div className="admin-console__user-info-item admin-console__user-email">
-          <small>Correo institucional</small>
-          <p>{email}</p>
+          <small className="project-form__info-value">
+            Correo institucional
+          </small>
+          <p className="project-form__info-value">{email}</p>
         </div>
 
         <div className="admin-console__user-info-item admin-console__user-career">
-          <small>Carrera universitaria</small>
-          <p>{career?.name}</p>
-          <span>{career?.code}</span>
+          <small className="project-form__info-value">
+            Carrera universitaria
+          </small>
+          <p className="project-form__info-value">{career?.name}</p>
+          <span className="project-form__info-value">{career?.code}</span>
         </div>
 
         <div className="admin-console__user-info-item admin-console__user-phone">
-          <small>Teléfono</small>
-          <p>{phoneNumber}</p>
+          <small className="project-form__info-value">Teléfono</small>
+          <p className="project-form__info-value">{phoneNumber}</p>
         </div>
 
         <div className="admin-console__user-info-item admin-console__user-dateOfEntry">
-          <small>Fecha de Ingreso a la U</small>
-          <p>{dateOfEntry}</p>
+          <small className="project-form__info-value">
+            Fecha de Ingreso a la U
+          </small>
+          <p className="project-form__info-value">{dateOfEntry}</p>
         </div>
 
         <small className="project-form__researcher-role admin-console__role">

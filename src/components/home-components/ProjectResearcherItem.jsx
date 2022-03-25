@@ -22,7 +22,8 @@ const ProjectResearcherItem = ({
       if (res.isConfirmed) {
         setResearcherList((researcherList) =>
           researcherList.filter(
-            (researcher) => researcher.id !== basicResearcherInfo.id
+            (researcher) =>
+              researcher.basicResearcherInfo.id !== basicResearcherInfo.id
           )
         );
       }
@@ -31,6 +32,7 @@ const ProjectResearcherItem = ({
 
   return (
     <div>
+      {}
       <div className="project-form__objective-item">
         <img
           src={basicResearcherInfo.photoURL}

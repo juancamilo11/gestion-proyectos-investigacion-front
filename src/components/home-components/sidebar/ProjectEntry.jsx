@@ -61,7 +61,7 @@ const ProjectEntry = ({
         </p>
         <p className="project-catalog__project-entry-content">
           <i className="fa fa-dollar project-catalog__icon-entry-value"></i>
-          <span className="bold-text">{budget} COP</span>
+          <span className="bold-text"> {budget} COP</span>
         </p>
         <p className="project-catalog__project-entry-content">
           <i class="fa fa-bullseye project-catalog__icon-entry-value"></i>

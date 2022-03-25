@@ -37,24 +37,22 @@ const ProjectInfoItem = ({
   return (
     <div>
       <div className="project-form__objective-item">
-        <div className="admin-console__user-info-item">
+        <div className="admin-console__user-info-item project-console__project-name">
           <small>Nombre del proyecto</small>
           <h3>{name}</h3>
         </div>
 
-        <div className="admin-console__user-info-item">
+        <div className="admin-console__user-info-item project-console__project-budget">
           <small>Presupuesto</small>
           <p>${budget} COP</p>
         </div>
-
-        <div className="admin-console__user-info-item">
+        <div className="admin-console__user-info-item project-console__project-duration">
           <small>Duración</small>
           <p>
             {duration.startingDate} - {duration.endingDate}
           </p>
         </div>
-
-        <div className="admin-console__user-info-item">
+        <div className="admin-console__user-info-item project-console__project-objectives">
           <small>Objetivos</small>
           <button
             onClick={handleDisplayProjectObjectives}
@@ -63,7 +61,6 @@ const ProjectInfoItem = ({
             Ver objetivos
           </button>
         </div>
-
         <div className="project-form-specific-objective-info">
           <button
             className="project-form__delete-specific-objective"

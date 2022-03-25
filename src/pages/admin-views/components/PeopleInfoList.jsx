@@ -18,7 +18,7 @@ const PeopleInfoList = ({ peopleListToShow, setPeopleList }) => {
           )}
         </h3>
       </div>
-      <p>LAdministrador de plataforma</p>
+      <p>Lista de administrador de plataforma</p>
       <hr />
       {peopleListToShow
         .filter((researcher) => researcher.role === "ADMINISTRATOR")

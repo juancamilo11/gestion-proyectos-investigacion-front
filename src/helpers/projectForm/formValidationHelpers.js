@@ -215,12 +215,12 @@ const validateProjectDates = (startingDate, endingDate, setErrorsState) => {
 };
 
 const validateProjectDescription = (description, setErrorsState) => {
-  if (description.trim().length < 5 || description.trim().length > 60) {
+  if (description.trim().length < 10 || description.trim().length > 500) {
     setErrorStateForField(
       setErrorsState,
       "description",
       true,
-      "Error, la descripción del proyecto debe tener entre 5 y 60 caracteres"
+      "Error, la descripción del proyecto debe tener entre 10 y 500 caracteres"
     );
     return false;
   }

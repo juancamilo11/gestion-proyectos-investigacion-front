@@ -4,10 +4,7 @@ import app from "./../firebase/firebaseConfig";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import fakeUserInfo from "../helpers/fakeData/fakeUserData";
 import { validateEmail } from "../helpers/login/emailDomainValidator";
-import {
-  sweetAlertForInvalidUserEmail,
-  sweetAlertForRequestResponseError,
-} from "../helpers/sweet-alert/sweetAlertBuilder";
+import { sweetAlertForInvalidUserEmail } from "../helpers/sweet-alert/sweetAlertBuilder";
 import {
   projectsLogoutCleaning,
   startFetchProjectsByResearcherId,
@@ -55,8 +52,10 @@ export const startGoogleLogin = () => {
       const { uid: id, displayName, email, photoURL } = response.user;
       dispatch(login(id, displayName, email, photoURL));
       if (!validateEmail(email)) {
-        dispatch(startGoogleLogout());
-        sweetAlertForInvalidUserEmail(email);
+        setTimeout(() => {
+          dispatch(startGoogleLogout());
+        }, 1000);
+        sweetAlertForInvalidUserEmail(email).then((res) => {});
       } else {
         startFetchUserInfo({ id, displayName, email, photoURL }).then(
           (userInfo) => {
@@ -78,11 +77,7 @@ export const startGoogleLogin = () => {
           }
         );
       }
-    } catch (error) {
-      sweetAlertForRequestResponseError(
-        "Se ha presentado el siguiente error: " + JSON.stringify(error)
-      );
-    }
+    } catch (error) {}
   };
 };
 
@@ -99,11 +94,7 @@ export const startFetchUserInfo = async (userInfo) => {
       return await herokuResponse.json();
     }
     throw await herokuResponse.json();
-  } catch (error) {
-    sweetAlertForRequestResponseError(
-      "Se ha presentado el siguiente error: " + JSON.stringify(error)
-    );
-  }
+  } catch (error) {}
 };
 
 export const startGoogleLogout = () => {

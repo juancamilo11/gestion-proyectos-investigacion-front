@@ -27,10 +27,10 @@ const ConsoleAdminNavbar = () => {
       <div className="project-catalog__sidebar-user-info admin-console__user-info">
         {auth?.photoURL ? (
           <img
-            // src={auth.photoURL}
-            src={
-              "https://thumbs.dreamstime.com/b/no-image-available-icon-flat-vector-no-image-available-icon-flat-vector-illustration-132482953.jpg"
-            }
+            src={auth.photoURL}
+            // src={
+            //   "https://thumbs.dreamstime.com/b/no-image-available-icon-flat-vector-no-image-available-icon-flat-vector-illustration-132482953.jpg"
+            // }
             alt="profile pic"
             className="project-catalog__img-profile"
           />
@@ -40,7 +40,6 @@ const ConsoleAdminNavbar = () => {
         <span className="project-catalog__display-name"> {auth.name}</span>
       </div>
       <div className="project-catalog__sidebar-buttons admin-console__sidebar-buttons">
-
         <p>Vista de administrador de plataforma</p>
         <button
           className="project-catalog__logout-button"

@@ -4,8 +4,7 @@ import { appRoles } from "../user-info/userRoles";
 export const sweetAlertForRequestResponseError = (message) =>
   Swal.fire({
     icon: "error",
-    text: `${message || "Falta definir el mensaje"}`,
-
+    text: `Error en la petición al servidor`,
     showCancelButton: false,
     showConfirmButton: false,
     allowEscapeKey: true,
@@ -205,6 +204,28 @@ export const sweetAlertForUserDataSuccessfullyUpdated = () =>
   Swal.fire({
     icon: "success",
     html: `¡Los datos han sido actualizados exitosamente!`,
+    showCancelButton: false,
+    showConfirmButton: true,
+    allowEscapeKey: true,
+    allowOutsideClick: true,
+    timer: 5000,
+  });
+
+export const sweetAlertForEmailNotFount = (email) =>
+  Swal.fire({
+    icon: "error",
+    html: `El correo electrónico institucional <b>${email}</b> no se encuentra registrado en la aplicación`,
+    showCancelButton: false,
+    showConfirmButton: false,
+    allowEscapeKey: true,
+    allowOutsideClick: true,
+    timer: 5000,
+  });
+
+export const sweetAlertForFormSubmitSuccessfully = () =>
+  Swal.fire({
+    icon: "success",
+    html: `El proceso de creación/actualización se ha llevado a cabo exitosamente`,
     showCancelButton: false,
     showConfirmButton: true,
     allowEscapeKey: true,

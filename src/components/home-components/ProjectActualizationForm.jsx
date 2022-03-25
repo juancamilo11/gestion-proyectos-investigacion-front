@@ -22,6 +22,8 @@ import {
   getInitialFormValuesForUpdating,
 } from "../../helpers/projectForm/projectFormHelpers";
 import {
+  sweetAlertForEmailNotFount,
+  sweetAlertForFormSubmitSuccessfully,
   sweetAlertForFormSubmitWithErrors,
   sweetAlertForInvalidEmailInput,
   sweetAlertForInvalidRoleInProject,
@@ -81,12 +83,12 @@ const ProjectActualizationForm = () => {
       specificObjectives,
       researcherList
     );
-    console.log(JSON.stringify(researchProjectObject));
     startPostNewResearchProject(researchProjectObject).then((projectResult) => {
       dispatch(startFetchProjectsByResearcherId(auth.uid));
-      resetForm(formInitialValues);
-      setResearcherList([getProjectLeaderInfo()]);
-      setSpecificObjectives([]);
+      // resetForm(formInitialValues);
+      // setResearcherList([getProjectLeaderInfo()]);
+      // setSpecificObjectives([]);
+      sweetAlertForFormSubmitSuccessfully();
       dispatch(activeNothingToShow());
     });
   };
@@ -149,6 +151,7 @@ const ProjectActualizationForm = () => {
         handleInputChange(cleanEvent);
       })
       .catch((err) => {
+        sweetAlertForEmailNotFount(newEmail);
         handleInputChange(cleanEvent);
       });
   };

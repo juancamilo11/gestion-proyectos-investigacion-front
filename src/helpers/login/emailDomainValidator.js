@@ -1,4 +1,4 @@
-const udeaDomain = "gmail.com";
+const udeaDomain = "udea.edu.co";
 
 export const validateEmail = (email) => {
   const emailDomain = email.split("@")[1];

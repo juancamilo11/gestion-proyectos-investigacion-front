@@ -45,12 +45,12 @@ const validateFormValues = (formValues, setErrorsState) => {
 };
 
 const validateProjectName = (name, setErrorsState) => {
-  if (name.trim().length < 5 || name.trim().length > 60) {
+  if (name.trim().length < 5 || name.trim().length > 100) {
     setErrorStateForField(
       setErrorsState,
       "name",
       true,
-      "Error, el nombre del proyecto debe tener entre 5 y 60 caracteres"
+      "Error, el nombre del proyecto debe tener entre 5 y 100 caracteres"
     );
     return false;
   }
@@ -75,13 +75,13 @@ const validateProjectBudget = (budget, setErrorsState) => {
 const validateProjectGeneralObjective = (generalObjective, setErrorsState) => {
   if (
     generalObjective.trim().length < 5 ||
-    generalObjective.trim().length > 60
+    generalObjective.trim().length > 200
   ) {
     setErrorStateForField(
       setErrorsState,
       "generalObjective",
       true,
-      "Error, el objetivo general del proyecto debe tener entre 5 y 60 caracteres"
+      "Error, el objetivo general del proyecto debe tener entre 5 y 200 caracteres"
     );
     return false;
   }
